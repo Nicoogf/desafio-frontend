@@ -1,6 +1,8 @@
+import { MongoDBConnection } from "@/utils/mongodb";
 import { NextResponse } from "next/server";
 
-export default async function POST ( request ) {
+export async function POST ( request ) {
+ MongoDBConnection()
  const body = await request.json( request )
  return NextResponse.json( body )
 }
