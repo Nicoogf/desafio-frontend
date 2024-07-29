@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DMH - Desafio Frontend 
 
-## Getting Started
+**Una billetera virtual sencilla y segura para gestionar tus finanzas.**
 
-First, run the development server:
+## Descripción general
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Digital Money House es una aplicación web en desarrollo que busca ofrecer una solución simple e intuitiva para la gestión de finanzas personales. En esta primera fase, el proyecto se enfoca en las funcionalidades básicas de una billetera virtual, como registro, inicio de sesión, gestión de pagos y seguimiento de transacciones.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Objetivos
+* **MVP:** Desarrollar un producto mínimo viable para validar el concepto y obtener feedback de los usuarios.
+* **Funcionalidades:** Permitir a los usuarios registrarse, iniciar sesión, agregar medios de pago, realizar transacciones y consultar el historial de sus operaciones.
+* **Experiencia de usuario:** Ofrecer una interfaz intuitiva y fácil de usar.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Tecnologías
+* **Frontend:** React, Next.js, HTML5, CSS3
+* **Backend:** Node.js, Express.js
+* **Base de datos:** MongoDB
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Arquitectura
+La aplicación sigue una arquitectura de microservicios, con un frontend desarrollado en Next.js y un backend en Node.js con Express.js. MongoDB se utiliza como base de datos para almacenar la información de los usuarios y sus transacciones.
 
-## Learn More
+## Sprints
+* **Sprint Uno :** Página de inicio , Registro de usuario , Inicio de sesión
+* **Sprint Dos:** Perfil de usuario, Gestión de medios de pago ,Ingreso de dinero
+* **Sprint Tres:** Pago de servicios , Dashboard
+* **Sprint Cuatro:** Historial de transacciones
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
