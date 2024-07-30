@@ -1,23 +1,27 @@
 import { MongoDBConnection } from "@/utils/mongodb";
 import { NextResponse } from "next/server";
-import { jwtVerify } from "jose";
-import { TOKEN_SECRET } from "@/config/config";
 import User from "@/models/User";
+import mongoose from "mongoose";
 
-export async function GET ( request ) {
+
+export async function GET ({ params }) {
     MongoDBConnection()
-    try {
-        const userCookie = request.cookies.get("token")
-        if(!token){
-            return NextResponse.json(["Usuario no autenticado por falta de Token Valido"],{status:400})
-        }
-        const { value } = userCookie
-        const { payload } = await jwtVerify( value , new TextDecoder().encode(TOKEN_SECRET))
-        const { id } = payload
+    const id = params.id
 
-        const userFound = await User.findById(id)
-        return NextResponse.json(userFound)
-    } catch (error) {
-        
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return NextResponse.json(["ID inválido" ], { status: 400 });
     }
+    try {
+        const userFound = await User.findById(id);
+        if (!userFound) {
+            return NextResponse.json(["Usuario Inexistente" ], { status: 404 });
+        }
+        return NextResponse.json(userFound);
+    } catch (error) {
+        return NextResponse.json([error.message ], { status: 500 });
+    }
+}
+
+export async function PUT ({ params }) {
+   
 }

@@ -10,6 +10,7 @@ export async function POST(request) {
     MongoDBConnection()
     try {
     const { email , password } = await request.json()
+    console.log(email)
 
     if(!email || !password){
         return NextResponse.json(["Faltan ingresar credenciales"] , {status:400})
