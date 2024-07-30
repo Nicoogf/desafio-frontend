@@ -4,6 +4,8 @@ import { jwtVerify } from "jose"
 import { TOKEN_SECRET } from "@/config/config";
 import User from "@/models/User";
 
+
+// Busque una cuenta por user_id en el token.
 export async function GET ( request ) {
     MongoDBConnection ()
     try {

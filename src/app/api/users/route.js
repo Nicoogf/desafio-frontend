@@ -1,10 +1,11 @@
 import { MongoDBConnection } from "@/utils/mongodb";
 import { createAccesToken } from "@/utils/jwt";
-import { validarEmail } from "@/utils/funcionalidades";
+import { GenerarAlias, validarEmail } from "@/utils/funcionalidades";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import bycrypt from "bcryptjs";
 import User from "@/models/User";
+import { palabras } from "@/utils/Diccionario";
 
 
 export async function POST(request) {
@@ -36,11 +37,12 @@ export async function POST(request) {
         dni,
         rol,
         dinero,
+        alias: GenerarAlias(palabras) ,
         phone,
         password: hashedPass,
         companyName,
         businessField,
-        cuit: `20${cuit}7`,
+        cuit,
       }
     )
 
@@ -68,6 +70,13 @@ export async function POST(request) {
 
     if (!validarEmail(email)) {
       return NextResponse.json(["El email ingresado no es valido"], { status: 400 })
+    }
+
+    const validateAlias = await User.findOne({alias:newUserRegister.alias})
+
+    if(validateAlias){
+      const new_alias = GenerarAlias(palabras)
+      newUserRegister.alias = new_alias
     }
 
     const token = await createAccesToken({ id: newUserRegister._id });
