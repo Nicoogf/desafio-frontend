@@ -47,13 +47,13 @@ export async function POST(request) {
     )
 
     if (newUserRegister.rol === "usuario") {
-      if (!name || !lastname || !email || !dni || !rol || !phone || !password) {
+      if (!name || !lastname || !email || !dni || !rol || !phone || !password || !confirmPassword) {
         return NextResponse.json(["Faltan completar Campos"], { status: 400 })
       }
     }
 
     if (newUserRegister.rol === "empresa") {
-      if (!companyName || !businessField || !email || !cuit || !rol || !phone || !password) {
+      if (!companyName || !businessField || !email || !cuit || !rol || !phone || !password || !confirmPassword) {
         return NextResponse.json(["Faltan completar Campos"], { status: 400 })
       }
     }
