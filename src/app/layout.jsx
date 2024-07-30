@@ -1,3 +1,4 @@
+import { Background } from "@/components/background/Background";
 import "./globals.css";
 
 export const metadata = {
@@ -8,8 +9,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body>
+      <body className="h-screen max-h-screen flex items-center justify-center">
         {children}
+        <Background />
       </body>
     </html>
   );
