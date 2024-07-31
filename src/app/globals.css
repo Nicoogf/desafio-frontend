@@ -30,3 +30,7 @@ body {
   overflow: hidden; 
   background-color: bisque;
 }
+
+li{
+  list-style:none
+}

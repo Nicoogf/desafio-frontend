@@ -27,6 +27,19 @@ export async function POST(request) {
       confirmPassword
     } = await request.json()
 
+    console.log({ name,
+      lastname,
+      email,
+      dni,
+      rol,
+      phone,
+      dinero,
+      password,
+      companyName,
+      businessField,
+      cuit,
+      confirmPassword})
+
     const hashedPass = await bycrypt.hash(password, 12)
 
     const newUserRegister = new User(
@@ -89,7 +102,7 @@ export async function POST(request) {
     });
 
     newUserRegister.save()
-
+  
     return NextResponse.json({
       id: newUserRegister._id,
       name: newUserRegister.name,
