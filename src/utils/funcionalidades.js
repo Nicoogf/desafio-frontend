@@ -66,3 +66,23 @@ export function GenerarAlias(palabras) {
   // Unir las palabras con un punto
   return aliasArray.join('.');
 }
+
+export function GenerarCBU() {
+  return Math.floor(Math.random() * 9000000000) + 1000000000;
+}
+
+
+export function maskInput(input) {
+  // Convertir el input a string para manejar números y cadenas de manera uniforme
+  const inputString = input.toString();
+  // Crear una cadena de asteriscos de la misma longitud que el input
+  const maskedString = '*'.repeat(inputString.length);
+  return maskedString;
+}
+
+
+export function splitAlias(alias) {
+// Dividir el string en un array usando el punto como delimitador
+const wordsArray = alias.split('.');
+return wordsArray;
+}

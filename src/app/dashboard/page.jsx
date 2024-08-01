@@ -18,11 +18,11 @@ const handleMenu = () => {
   setShowCbu(!showcbu)
 }
 
-  // useEffect(() => {
-  //   if (!loading && !isAuthenticated && !user) {
-  //     router.push("/login")
-  //   }
-  // }, [loading, isAuthenticated, router])
+  useEffect(() => {
+    if (!loading && !isAuthenticated && !user) {
+      router.push("/login")
+    }
+  }, [loading, isAuthenticated, router])
 
 
 
@@ -51,17 +51,17 @@ const handleMenu = () => {
 
         <div className="ml-4 -mt-3">
           <h3 className='text-sm'> Dinero disponible </h3>
-          <p className='text-4xl font-bold'> $ </p>
+          <p className='text-4xl font-bold'> $ {user?.dinero} </p>
         </div>
 
         <CopyToClipboard text={user?.cbu}>
-        <div className={`absolute bottom-0 right-0 px-4 py-2 flex flex-row gap-x-2 items-center bg-greenlime text-lime-950 rounded-tl-lg rounded-br-lg  transition-all duration-300 cursor-pointer ${showcbu ? "translate-x-0" : "translate-x-36"}`}
+        <div className={`absolute text-lime-950 bottom-0 right-0 px-4 py-2 flex flex-row gap-x-2 items-center bg-greenlime rounded-tl-lg rounded-br-lg  transition-all duration-300 cursor-pointer ${showcbu ? "translate-x-0" : "translate-x-48"}`}
          onClick={()=> {
           toast.success("CBU copiado en el Portapapeles")
           handleMenu()
           }}>
           <div> <FaRegCopy  className='text-lime-950'/> </div>
-          <div>  {user?.cbu} </div>          
+          <div className='text-lime-950'>  {user?.cbu} </div>          
         </div>
         </CopyToClipboard>
 

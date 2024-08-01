@@ -21,7 +21,7 @@ export async function POST(request) {
     
     const userFound = await User.findOne({email})
 
-    console.log(userFound)
+    console.log(userFound.cbu)
 
     if(!userFound){
         return NextResponse.json(["El usuario no se encuentra registrado"] , {status:400})

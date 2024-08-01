@@ -1,6 +1,7 @@
 'use client'
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
 
@@ -9,6 +10,7 @@ const RegisterPage = () => {
   const [role, setRole] = useState('Usuario')
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const { signUp, errors: RegisterErrors , setError} = useAuth()
+  const router = useRouter()
   
   const onChangeRol = (e) => {
     setRole(e.target.value)

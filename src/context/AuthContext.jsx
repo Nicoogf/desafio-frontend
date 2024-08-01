@@ -1,6 +1,6 @@
 'use client'
 
-import { loginRequest, registerRequest, verifyToken } from "@/axios/Auth"
+import { editUserRequest, loginRequest, registerRequest, verifyToken } from "@/axios/Auth"
 import { useRouter } from "next/navigation"
 import Cookies from "js-cookie";
 import { createContext, useContext, useEffect, useState } from "react"
@@ -56,6 +56,14 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const editUser = async (user) => {
+        try {
+            const res = await editUserRequest(user)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     useEffect(() => {               
         async function CheckLogin() {
             const cookies = Cookies.get();
@@ -88,7 +96,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ signUp, errors, setError, signIn, user ,isAuthenticated}}>
+        <AuthContext.Provider value={{ signUp, errors, setError, signIn, user ,isAuthenticated , editUser}}>
             {children}
         </AuthContext.Provider>
     )

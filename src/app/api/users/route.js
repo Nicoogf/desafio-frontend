@@ -1,6 +1,6 @@
 import { MongoDBConnection } from "@/utils/mongodb";
 import { createAccesToken } from "@/utils/jwt";
-import { GenerarAlias, validarEmail } from "@/utils/funcionalidades";
+import { GenerarAlias, GenerarCBU, validarEmail } from "@/utils/funcionalidades";
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import bycrypt from "bcryptjs";
@@ -50,6 +50,7 @@ export async function POST(request) {
         dni,
         rol: rol.toLowerCase(),
         dinero,
+        cbu: GenerarCBU(),
         alias: GenerarAlias(palabras) ,
         phone,
         password: hashedPass,
@@ -124,5 +125,38 @@ export async function POST(request) {
   } catch (error) {
     console.log(error)
     return NextResponse.json({ error }, { status: 400 })
+  }
+}
+
+export async function PATCH(request) {
+  try {
+      MongoDBConnection();
+
+      const body = await request.json();
+      const { email, name, lastname, dni, phone, alias, cbu } = body;
+      console.log(cbu)
+
+      // Buscar al usuario en la base de datos por su email
+      const userFound = await User.findOne({ email });
+
+      if (!userFound) {
+          return NextResponse.json({ message: "El usuario no existe" }, { status: 404 });
+      }
+
+      // Actualizar los campos del usuario solo si son diferentes y no están vacíos
+      if (name && name !== userFound.name) userFound.name = name;
+      if (lastname && lastname !== userFound.lastname) userFound.lastname = lastname;
+      if (dni && dni !== userFound.dni) userFound.dni = dni;
+      if (phone && phone !== userFound.phone) userFound.phone = phone;
+      if (alias && alias !== userFound.alias) userFound.alias = alias;
+      if (cbu && cbu !== userFound.cbu) userFound.cbu = cbu;
+
+      // Guardar los cambios en la base de datos
+      await userFound.save();
+
+      return NextResponse.json({ message: "Información actualizada correctamente" }, { status: 200 });
+  } catch (error) {
+      console.log(error);
+      return NextResponse.json({ message: error.message }, { status: 400 });
   }
 }

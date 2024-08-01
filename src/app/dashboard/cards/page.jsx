@@ -33,9 +33,9 @@ const Cards = () => {
             <section>
                 <h5>Listado de Tarjetas</h5>
                 <Link href="/dashboard/cards/add-card">Agregar Tarjetas</Link>
-                <ul>
+                <ul className='flex flex-col gap-2'>
                 {cards.map(card => (
-                        <li key={card._id}>{card.name}</li>
+                        <li key={card._id} className='bg-red-700 '>{card.name}</li>
                     ))}
                 </ul>
             </section>
