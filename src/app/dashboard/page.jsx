@@ -2,7 +2,6 @@
 import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { TransactionType } from '@/utils/enum'
 import React, { useEffect, useState } from 'react'
 import { FaRegCopy } from 'react-icons/fa'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
@@ -71,7 +70,7 @@ const handleMenu = () => {
       <section className='flex flex-col gap-y-2 mt-4 w-[80%] max-w-[595px]  mx-auto py-4'>
         <Link href="/dashboard/send" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Transferir dinero </Link>
         <Link href="/dashboard/servicios" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Pagar Servicios  </Link>
-        <Link href="/dashboard/deposit" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Ingresar Dinero  </Link>
+        <Link href="/dashboard/get-money" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Ingresar Dinero  </Link>
       </section>
 
       <section className='w-[80%] max-w-[595px] mx-auto'>

@@ -1,9 +1,6 @@
 'use client'
-import { verifyUserRequest } from "@/peticiones/auth"
-import { getBusinessRequest } from "@/peticiones/business"
-import { getMovesRequest } from "@/peticiones/moves"
-import { payServicesRequest } from "@/peticiones/pay"
-import { depositMoneyRequest, sendMoneyRequest } from "@/peticiones/trans"
+import { getMovesRequest } from "@/axios/Moves"
+// import { depositMoneyRequest, sendMoneyRequest } from "@/peticiones/trans"
 import { createContext, useContext, useState } from "react"
 
 const TransactionContext = createContext()
@@ -23,9 +20,6 @@ export function TransactionProvider({ children }) {
     const [transactionDetails, setTransactionDetails] = useState(null);
 
 
-
-
-
     const getMoves = async () => {
         try {
             const res = await getMovesRequest()       
@@ -34,16 +28,19 @@ export function TransactionProvider({ children }) {
 
         }
     }
-
     
-
-  
-
-
-
+    const depositMoney = async (trans) => {
+        try {
+            const res = await depositMoneyRequest(trans)
+            setTransactionDetails(res.data);
+            console.log("El res del transition es : ", res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
-        <TransactionContext.Provider value={{ getMoves, sendMoney, depositMoney, moves, getBusiness, business , VerifyUser , payServices , transactionDetails}}>
+        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business }}>
             {children}
         </TransactionContext.Provider>
     )

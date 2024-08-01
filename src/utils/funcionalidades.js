@@ -86,3 +86,8 @@ export function splitAlias(alias) {
 const wordsArray = alias.split('.');
 return wordsArray;
 }
+
+export function formatCurrency(amount) {
+  // Convierte el número en un string con formato de moneda
+  return amount?.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
