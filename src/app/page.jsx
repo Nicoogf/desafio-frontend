@@ -4,7 +4,7 @@ import Logo from "../../public/logo-off.png"
 
 export default function Home() {
   return (
-    <main className="bg-gradient-lime flex flex-col items-center justify-around relative z-50 w-full max-w-[1920px] mx-auto h-[calc(100vh-40px)] rounded-xl border border-gray-800 overflow-hidden bg-slate-800 ">
+    <main className="flex flex-col items-center justify-around relative z-50 w-full max-w-[1920px] mx-auto h-[calc(100vh-40px)] rounded-xl border border-gray-800 overflow-hidden bg-slate-800">
     <nav className="absolute top-0 bg-greenlime text-gray-900 w-full p-2 flex flex-row items-center justify-between">
      <Image src={Logo} alt= "Logo Digital Money App" className="w-14 ml-4"/> 
       <div className="flex flex-row gap-x-2">

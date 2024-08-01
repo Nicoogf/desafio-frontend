@@ -48,7 +48,7 @@ export async function POST(request) {
         lastname,
         email,
         dni,
-        rol,
+        rol: rol.toLowerCase(),
         dinero,
         alias: GenerarAlias(palabras) ,
         phone,

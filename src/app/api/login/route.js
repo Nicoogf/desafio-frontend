@@ -37,8 +37,6 @@ export async function POST(request) {
 
     const token = await createAccesToken({ id: userFound._id });
 
-    console.log(token)
-
       // Establecer la cookie
       cookies().set("token", token, {
         // httpOnly: true,

@@ -2,6 +2,8 @@ import Card from "@/models/Card";
 import User from "@/models/User";
 import { MongoDBConnection } from "@/utils/mongodb";
 import { NextResponse } from "next/server";
+import { jwtVerify } from "jose";
+import { TOKEN_SECRET } from "@/config/config";
 
 
 //Listado de tarjetas
@@ -9,12 +11,13 @@ export async function GET(request, { params }){
     MongoDBConnection()
     try {
         const id = params.id
+        console.log(id)
 
         const userFound = await User.findById(id)
         if(!userFound){
             return NextResponse.json(["No se encontro usuario Logueado"], {status:400})
         }
-    
+        console.log(userFound.name)
         const listCard = await Card.find({user:id})
         console.log(listCard)
         return NextResponse.json(listCard)
@@ -24,27 +27,28 @@ export async function GET(request, { params }){
  
 }
 
+//Crear Tarjeta
 export async function POST(request ,{ params }) {
     try {
         MongoDBConnection();
-        const id = params.id
+        const idUser = params.id
 
         // Obtener datos de la solicitud
         const { name, codeSegurity, serial, vto, mount } = await request.json();
   
         // Verificar si la cookie de usuario está presente
-        // const userCookie = request.cookies.get('token');
-        // if (!userCookie) {
-        //     return NextResponse.json({ message: "El usuario no está AUTENTICADO" }, { status: 401 });
-        // }
+        const userCookie = request.cookies.get('token');
+        if (!userCookie) {
+            return NextResponse.json({ message: "El usuario no está AUTENTICADO" }, { status: 401 });
+        }
   
-        // Extraer el valor de la cookie y parsearlo
-        // const { value } = userCookie;
-        // const { payload } = await jwtVerify(value, new TextEncoder().encode(TOKEN_SECRET));
-        // const { id } = payload;
+     
+        const { value } = userCookie;
+        const { payload } = await jwtVerify(value, new TextEncoder().encode(TOKEN_SECRET));
+        const { id } = payload;
   
         // Contar las tarjetas existentes para el usuario
-        const cardCount = await Card.countDocuments({ user: id });
+        const cardCount = await Card.countDocuments({ user: idUser });
         if (cardCount >= 10) {
             return NextResponse.json([ "No se pueden agregar más de 10 tarjetas" ], { status: 400 });
         }
@@ -56,7 +60,7 @@ export async function POST(request ,{ params }) {
             serial,
             vto,
             mount,
-            user: id
+            user: idUser
         });
   
         // Guardar la tarjeta en la base de datos

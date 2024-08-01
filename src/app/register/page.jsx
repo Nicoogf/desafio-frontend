@@ -9,6 +9,7 @@ const RegisterPage = () => {
   const [role, setRole] = useState('Usuario')
   const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const { signUp, errors: RegisterErrors , setError} = useAuth()
+  
   const onChangeRol = (e) => {
     setRole(e.target.value)
   }
@@ -16,9 +17,10 @@ const RegisterPage = () => {
   const OnSubmit = handleSubmit(async (values) => {
     console.log(values)
     signUp(values)
+    router.push("/login")
   });
 
-  const validationErrors = [
+  const  validationErrors = [
     ...RegisterErrors,
     errors.name && "El nombre es requerido",
     errors.lastname && "El apellido es requerido",
@@ -32,13 +34,8 @@ const RegisterPage = () => {
     errors.cuit && "El CUIT es requerido"
   ].filter(Boolean);
 
- 
-
-
-
   return (
-    <main className='relative z-50 w-full bg-slate-900 h-[calc(100vh-40px)] max-w-[1920px] rounded-md flex flex-col items-center justify-center overflow-hidden'>
-      
+    <main className='relative z-50 w-full bg-slate-900 h-[calc(100vh-40px)] max-w-[1920px] rounded-md flex flex-col items-center justify-center overflow-hidden'>      
       
       {RegisterErrors.map((error, i) => (
         <div key={i} className='w-full absolute top-0 bg-red-700 text-center '> {error} </div>
@@ -168,10 +165,7 @@ const RegisterPage = () => {
 
 
             <input className='bg-gray-700 p-2 rounded-md outline-none' name="confirmPassword" type='password' placeholder='Confirmar Contraseña'
-              {...register("confirmPassword", {
-                required: "La confirmación es requerida",
-                validate: value => value === password || "Las contraseñas no coinciden"
-              })} />
+              {...register("confirmPassword", { required: true })} />
 
           
           </>
