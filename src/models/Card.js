@@ -17,6 +17,9 @@ const CardSchema = new Schema({
     vto:{
         type: String
     },
+    desc:{
+        type:String
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",

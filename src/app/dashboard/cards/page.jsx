@@ -1,38 +1,46 @@
-'use client'
-import { useAuth } from '@/context/AuthContext'
-import { useCard } from '@/context/CardContext'
-import { useRouter } from 'next/navigation'
-import React, { useEffect } from 'react'
+'use client';
+
+import { useAuth } from '@/context/AuthContext';
+import { useCard } from '@/context/CardContext';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react';
 
 const Cards = () => {
+    const router = useRouter();
+    const { user, loading, isAuthenticated } = useAuth();
+    const { cards, getCards } = useCard();
 
-  const router = useRouter()
-  const { user, loading, isAuthenticated } = useAuth()
-  const { cards , getCards } = useCard()
+    useEffect(() => {
+        if (!loading && isAuthenticated && user?.id) {
+            getCards(user.id); // Asegúrate de pasar el ID del usuario
+        } 
+    }, [loading, isAuthenticated, user]);
 
-  
-  console.log(cards)
-  console.log(user)
+    if (loading || !user) {
+        return <p>Loading...</p>;
+    }
 
-  useEffect(() => {
-    if (isAuthenticated && user) {
-        getCards(user.id);
-    } 
-}, [isAuthenticated, user, loading]);
+    if (!isAuthenticated) {
+        router.push('/login');
+        return null;
+    }
 
-
-
-  return (
-    <div>Cards
-      <section>
-        { loading ? (
-          <p> Loading ... </p>
-        ): (
-          <h5> Cargo </h5>
-        )}
-      </section>
-    </div>
-  )
+    console.log(cards)
+    return (
+        <div>
+            <h1>Cards</h1>
+            <section>
+                <h5>Listado de Tarjetas</h5>
+                <Link href="/dashboard/cards/add-card">Agregar Tarjetas</Link>
+                <ul>
+                {cards.map(card => (
+                        <li key={card._id}>{card.name}</li>
+                    ))}
+                </ul>
+            </section>
+        </div>
+    );
 }
 
-export default Cards
+export default Cards;

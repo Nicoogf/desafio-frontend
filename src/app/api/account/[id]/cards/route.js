@@ -7,24 +7,21 @@ import { TOKEN_SECRET } from "@/config/config";
 
 
 //Listado de tarjetas
-export async function GET(request, { params }){
-    MongoDBConnection()
+export async function GET(request, { params }) {
+    MongoDBConnection();
     try {
-        const id = params.id
-        console.log(id)
+        const id = params.id;
 
-        const userFound = await User.findById(id)
-        if(!userFound){
-            return NextResponse.json(["No se encontro usuario Logueado"], {status:400})
+        const userFound = await User.findById(id);
+        if (!userFound) {
+            return NextResponse.json({ error: "No se encontró usuario logueado" }, { status: 400 });
         }
-        console.log(userFound.name)
-        const listCard = await Card.find({user:id})
-        console.log(listCard)
-        return NextResponse.json(listCard)
+
+        const listCard = await Card.find({ user: id });
+        return NextResponse.json(listCard);
     } catch (error) {
-        return NextResponse.json(error)
+        return NextResponse.json({ error: error.message }, { status: 500 });
     }
- 
 }
 
 //Crear Tarjeta
@@ -34,7 +31,7 @@ export async function POST(request ,{ params }) {
         const idUser = params.id
 
         // Obtener datos de la solicitud
-        const { name, codeSegurity, serial, vto, mount } = await request.json();
+        const { name, codeSegurity, serial, vto, mount ,desc} = await request.json();
   
         // Verificar si la cookie de usuario está presente
         const userCookie = request.cookies.get('token');
@@ -60,7 +57,8 @@ export async function POST(request ,{ params }) {
             serial,
             vto,
             mount,
-            user: idUser
+            user: idUser,
+            desc
         });
   
         // Guardar la tarjeta en la base de datos
