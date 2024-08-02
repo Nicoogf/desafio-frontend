@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState } from 'react';
-import { createCardRequest, getCardsRequest } from '@/axios/Cards';
+import { createCardRequest, getCardsRequest ,deleteCardRequest} from '@/axios/Cards';
 
 const CardContext = createContext();
 
@@ -38,8 +38,19 @@ export function CardProvider({ children }) {
         }
     }
 
+    const deleteCard = async (idCard , idUser) => {
+        try {
+            const res = await deleteCardRequest(idCard,idUser)
+            console.log(res)
+            if (res.status === 200) setCard(cards.filter(task => task._id !== id))
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
     return (
-        <CardContext.Provider value={{ createCard, getCards, cards, errors }}>
+        <CardContext.Provider value={{ createCard, getCards, cards, errors ,deleteCard}}>
             {children}
         </CardContext.Provider>
     );

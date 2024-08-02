@@ -21,6 +21,7 @@ export async function GET(request) {
     const { id } = payload;
 
     const movimientos = await Movement.find({userId: id})
-
+    console.log(movimientos)
     return NextResponse.json( movimientos ) 
+   
 }

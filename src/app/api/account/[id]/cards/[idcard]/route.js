@@ -20,3 +20,19 @@ export async function GET(request ,{ params }) {
         return NextResponse.json(error)
     } 
 }
+
+export async function DELETE(request , {params}) {
+    MongoDBConnection()
+    const id = params.id
+    console.log("El id de la tarjeta es : " , id)
+
+    const CardDelete = await Card.findByIdAndDelete(id)
+
+    if(!CardDelete){
+        return NextResponse.json({
+            message : "No se encontro la tarjeta para eliminarla"
+        })
+    }
+
+    return NextResponse.json({message : "Tarjeta eliminada"})
+}

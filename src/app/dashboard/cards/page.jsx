@@ -9,7 +9,7 @@ import React, { useEffect } from 'react';
 const Cards = () => {
     const router = useRouter();
     const { user, loading, isAuthenticated } = useAuth();
-    const { cards, getCards } = useCard();
+    const { cards, getCards ,deleteCard } = useCard();
 
     useEffect(() => {
         if (!loading && isAuthenticated && user?.id) {
@@ -26,6 +26,7 @@ const Cards = () => {
         return null;
     }
 
+    console.log(user.id)
     console.log(cards)
     return (
         <div>
@@ -35,7 +36,10 @@ const Cards = () => {
                 <Link href="/dashboard/cards/add-card">Agregar Tarjetas</Link>
                 <ul className='flex flex-col gap-2'>
                 {cards.map(card => (
-                        <li key={card._id} className='bg-red-700 '>{card.name}</li>
+                        <div key={card._id} className='bg-red-700 '>
+                          <h6>  {card.name} </h6> 
+                          <button onClick={() => { deleteCard(card._id ,user.id) }}> Eliminar </button>
+                        </div>
                     ))}
                 </ul>
             </section>

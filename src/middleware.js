@@ -43,7 +43,6 @@ export async function middleware(request) {
       console.log(error)
       return NextResponse.redirect(new URL("/login", request.url))
     }
-  
   }
   return NextResponse.next()
 }
