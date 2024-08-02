@@ -38,6 +38,7 @@ const Cards = () => {
                 {cards.map(card => (
                         <div key={card._id} className='bg-red-700 '>
                           <h6>  {card.name} </h6> 
+                          <Link href={`/dashboard/cards/${card._id}`}> Ver Detalles </Link> 
                           <button onClick={() => { deleteCard(card._id ,user.id) }}> Eliminar </button>
                         </div>
                     ))}
