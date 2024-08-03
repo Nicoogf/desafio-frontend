@@ -1,6 +1,6 @@
 'use client'
 import { getMovesRequest } from "@/axios/Moves"
-import { depositMoneyRequest, getBusinessRequest, sendMoneyRequest } from "../axios/transferences"
+import { depositMoneyRequest, getBusinessRequest, payServicesRequest, sendMoneyRequest } from "../axios/transferences"
 import { createContext, useContext, useState } from "react"
 import { useRouter } from "next/navigation"
 
@@ -21,7 +21,7 @@ export function TransactionProvider({ children }) {
     const [business, setBussines] = useState([])
     const [transactionDetails, setTransactionDetails] = useState(null);
     const [errorsTransaction, setErrorsTransaction] = useState([]);
-    
+
 
 
     const sendMoney = async (trans) => {
@@ -31,7 +31,7 @@ export function TransactionProvider({ children }) {
             console.log("El res del transition es : ", res.data)
             router.push("/dashboard/transferences/success")
         } catch (error) {
-            console.log(error)         
+            console.log(error)
             console.log(error.response.data)
             setErrorsTransaction(error.response.data)
         }
@@ -39,17 +39,17 @@ export function TransactionProvider({ children }) {
 
     const getMoves = async (userid) => {
         try {
-            const res = await getMovesRequest()       
+            const res = await getMovesRequest(userid)
             setMoves(res.data)
         } catch (error) {
-
+            console.log(error)
         }
     }
-    
-    const depositMoney = async (idUser , trans) => {
+
+    const depositMoney = async (idUser, trans) => {
         try {
             console.log(idUser)
-            const res = await depositMoneyRequest(idUser ,trans)
+            const res = await depositMoneyRequest(idUser, trans)
             setTransactionDetails(res.data);
             console.log("El res del transition es : ", res)
         } catch (error) {
@@ -69,23 +69,23 @@ export function TransactionProvider({ children }) {
         try {
             const res = await getBusinessRequest()
             setBussines(res.data)
-           
+
         } catch (error) {
             console.log(error)
         }
     }
 
-    const payServices = async ( service_id , data ) => {
+    const payServices = async (service_id, data) => {
         try {
             const res = await payServicesRequest(service_id, data)
-            console.log("El valor del pago de servicio :" , res)
+            console.log("El valor del pago de servicio :", res)
         } catch (error) {
             console.log(error)
         }
     }
 
     return (
-        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business ,sendMoney,errorsTransaction ,transactionDetails , VerifyUser , getBusiness, payServices}}>
+        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business, sendMoney, errorsTransaction, transactionDetails, VerifyUser, getBusiness, payServices }}>
             {children}
         </TransactionContext.Provider>
     )

@@ -30,6 +30,7 @@ export function CardProvider({ children }) {
 
     const getCards = async (id) => {
         try {
+            console.log(id)
             const res = await getCardsRequest(id);
             setCard(res.data);
             console.log(res.data);

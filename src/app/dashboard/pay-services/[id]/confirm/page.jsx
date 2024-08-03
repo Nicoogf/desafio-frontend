@@ -21,10 +21,11 @@ const ConfirmPago = () => {
  
     const router = useRouter()
    
+    console.log(user.id)
 
     useEffect(() => {
         getBusiness()
-        getCards()
+        getCards(user.id)       
         setPrecioRandom(generateRandomPrice())
     }, [])
 
@@ -47,7 +48,7 @@ const ConfirmPago = () => {
             user_id: user.id
         }
 
-        console.log(infoDelPago)
+    
         await payServices(empresaDetail._id , infoDelPago)
         router.push("/dashboard")
     })
