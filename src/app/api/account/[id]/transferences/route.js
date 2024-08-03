@@ -12,7 +12,7 @@ export async function POST(request) {
     MongoDBConnection();
     const { alias, amount, email } = await request.json();
     const trans_value = parseInt(amount);
-    console.log(alias,amount,email)
+
 
     const userSender = await User.findOne({ email });
     if (!userSender) {

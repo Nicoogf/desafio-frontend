@@ -11,6 +11,7 @@ export async function GET(request, { params }) {
     MongoDBConnection();
     try {
         const id = params.id;
+        console.log( id )
 
         const userFound = await User.findById(id);
         if (!userFound) {

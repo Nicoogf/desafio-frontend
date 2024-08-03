@@ -44,7 +44,7 @@ const handleMenu = () => {
   } , [user])
 
 
-  console.log(moves)
+
   const [searchTerm, setSearchTerm] = useState('');
   const elementsWithDate = moves.filter(element => element.date);
   elementsWithDate.sort((a, b) => new Date(b.date) - new Date(a.date));

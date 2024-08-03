@@ -115,3 +115,18 @@ export function formatDate(fecha) {
 
   return `${day}/${month}/${year}`;
 }
+
+export function generateRandomPrice() {
+  // Genera un número aleatorio entre 1000 y 65000
+  const min = 1000;
+  const max = 3000;
+  const randomNum = Math.random() * (max - min) + min;
+  
+  // Redondea el número a dos decimales
+  const roundedNum = randomNum.toFixed(2);
+  
+  // Convierte el número a un flotante
+  return parseFloat(roundedNum);
+}
+
+

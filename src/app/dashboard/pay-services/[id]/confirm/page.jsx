@@ -1,14 +1,14 @@
 'use client'
-import { useTransaction } from '@/context/TransContext'
-import React, { useEffect } from 'react'
+
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
-import { generateRandomPrice } from '@/utils/randomcbu'
+import { formatCurrency, generateRandomPrice } from '@/utils/funcionalidades'
 import { useCard } from '@/context/CardContext'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/context/AuthContext'
-import { formatCurrency } from '@/utils/VerPrecio'
 import Link from 'next/link'
+import { useTransaction } from '@/context/TransactionContext'
 
 const ConfirmPago = () => {
   
@@ -17,21 +17,25 @@ const ConfirmPago = () => {
     const { cards, getCards } = useCard()
     const { user } = useAuth()
     const { register, handleSubmit } = useForm()
-    console.log(parametros.id)
+    const [precioRandom, setPrecioRandom] = useState(null)
+ 
     const router = useRouter()
    
 
     useEffect(() => {
         getBusiness()
         getCards()
+        setPrecioRandom(generateRandomPrice())
     }, [])
 
     const empresaDetail = business.find(empresa => empresa._id === parametros.id)
-    console.log(empresaDetail)
-    console.log(cards)
-    console.log(user)
 
-    const precioRandom = generateRandomPrice()
+
+ 
+
+    if (!precioRandom) {
+        return null // o un loading spinner
+    }
 
     const onSubmit = handleSubmit(async (data) => {
         const infoDelPago = {
@@ -44,7 +48,7 @@ const ConfirmPago = () => {
         }
 
         console.log(infoDelPago)
-        await payServices(infoDelPago)
+        await payServices(empresaDetail._id , infoDelPago)
         router.push("/dashboard")
     })
 
@@ -72,7 +76,7 @@ const ConfirmPago = () => {
                         <label className="flex items-center justify-between">
                             <span className="ml-2 text-gray-700">Dinero en cuenta</span>
                             <span className="ml-2 text-lime-400">$ {formatCurrency(user?.dinero)}</span>
-                            <input type="radio" id={`rol-${user?.name}`} name="paymentMethod" value={`cash-${user.id}`} className="hidden-input" {...register("paymentMethod", { required: true })} />
+                            <input type="radio" id={`rol-${user?.name}`} name="paymentMethod" value={`cash-${user?.id}`} className="hidden-input" {...register("paymentMethod", { required: true })} />
                         </label>
                     </div>
                 </div>

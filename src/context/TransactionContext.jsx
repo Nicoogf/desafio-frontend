@@ -1,6 +1,6 @@
 'use client'
 import { getMovesRequest } from "@/axios/Moves"
-import { depositMoneyRequest, sendMoneyRequest } from "../axios/transferences"
+import { depositMoneyRequest, getBusinessRequest, sendMoneyRequest } from "../axios/transferences"
 import { createContext, useContext, useState } from "react"
 import { useRouter } from "next/navigation"
 
@@ -65,8 +65,27 @@ export function TransactionProvider({ children }) {
         }
     }
 
+    const getBusiness = async () => {
+        try {
+            const res = await getBusinessRequest()
+            setBussines(res.data)
+           
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const payServices = async ( service_id , data ) => {
+        try {
+            const res = await payServicesRequest(service_id, data)
+            console.log("El valor del pago de servicio :" , res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
-        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business ,sendMoney,errorsTransaction ,transactionDetails , VerifyUser}}>
+        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business ,sendMoney,errorsTransaction ,transactionDetails , VerifyUser , getBusiness, payServices}}>
             {children}
         </TransactionContext.Provider>
     )

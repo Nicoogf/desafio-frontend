@@ -22,10 +22,10 @@ export async function GET(request) {
     
         
         const { id } = payload;
-        console.log(id)
+    
     
         const movimientos = await Movement.find({userId: id})
-        console.log(movimientos)
+ 
         return NextResponse.json( movimientos ) 
        
     } catch (error) {

@@ -16,7 +16,7 @@ const Layout = ({children}) => {
   router.push("/")
 }
 
-console.log(user)
+
   return (
     <main className='grid grid-cols-12 w-[100%] max-w-[1920px] mx-auto h-[calc(100vh-40px)] rounded-xl border border-gray-800 overflow-hidden bg-slate-800 relative z-50'>
      <nav className='bg-gray-950 w-full px-2 py-3 flex flex-row items-center justify-between mb-2 absolute top-0'>
