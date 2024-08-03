@@ -91,3 +91,16 @@ export function formatCurrency(amount) {
   // Convierte el número en un string con formato de moneda
   return amount?.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
+
+
+
+export function lastFourNumbers(number) {
+  // Convertimos el número a una cadena
+  const numberStr = number.toString();
+  
+  // Obtenemos los últimos 4 caracteres de la cadena
+  const lastFourDigits = numberStr.slice(-4);
+  
+  // Convertimos la cadena de vuelta a un número y lo devolvemos
+  return parseInt(lastFourDigits, 10);
+}

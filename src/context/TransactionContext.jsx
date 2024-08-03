@@ -45,9 +45,10 @@ export function TransactionProvider({ children }) {
         }
     }
     
-    const depositMoney = async (trans) => {
+    const depositMoney = async (idUser , trans) => {
         try {
-            const res = await depositMoneyRequest(trans)
+            console.log(idUser)
+            const res = await depositMoneyRequest(idUser ,trans)
             setTransactionDetails(res.data);
             console.log("El res del transition es : ", res)
         } catch (error) {
@@ -56,7 +57,7 @@ export function TransactionProvider({ children }) {
     }
 
     return (
-        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business ,sendMoney,errorsTransaction }}>
+        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business ,sendMoney,errorsTransaction ,transactionDetails }}>
             {children}
         </TransactionContext.Provider>
     )

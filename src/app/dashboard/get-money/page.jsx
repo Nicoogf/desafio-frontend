@@ -19,7 +19,6 @@ const DepositPage = () => {
 
 
   const onSubmit = handleSubmit(async (data) => {
-
     if (!data.amount || !data.card) {
       console.error("Amount and card are required.")
       return
@@ -33,21 +32,21 @@ const DepositPage = () => {
 
     console.log(depositData)
 
-    depositMoney(depositData)
-    router.push("/dashboard/deposit/success")
+    depositMoney(user.id , depositData)
+    router.push("/dashboard/get-money/success")
   })
 
   useEffect(() => {
     getCards()
   }, [])
 
-  console.log(cards)
+  console.log(user)
   return (
     <section>
       <form onSubmit={onSubmit} className='mt-10 bg-gray-950 flex flex-col w-[80%] max-w-[720px] mx-auto p-4 gap-y-2 text-black'>
 
         <input name="amount" type="number" className='p-2' placeholder="Ingresar Monto"
-          {...register("amount", { required: true })} disabled={cards.length < 1 ? "true" : "false"} />
+          {...register("amount", { required: true })}  />
 
 
         <div class="flex flex-col space-y-2">
@@ -80,7 +79,7 @@ const DepositPage = () => {
           Volver al Dashboard
           </Link>
         ) : (
-            <button> Siguiente </button>
+          <button className='bg-lime-500 text-lime-950 p-2'> Depositar </button>
           )}
 
       </form>
