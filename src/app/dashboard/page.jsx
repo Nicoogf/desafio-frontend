@@ -17,11 +17,11 @@ const handleMenu = () => {
   setShowCbu(!showcbu)
 }
 
-  useEffect(() => {
-    if (!loading && !isAuthenticated && !user) {
-      router.push("/login")
-    }
-  }, [loading, isAuthenticated, router])
+  // useEffect(() => {
+  //   if (!loading && !isAuthenticated && !user) {
+  //     router.push("/login")
+  //   }
+  // }, [loading, isAuthenticated, router])
 
 
 
@@ -68,7 +68,7 @@ const handleMenu = () => {
 
 
       <section className='flex flex-col gap-y-2 mt-4 w-[80%] max-w-[595px]  mx-auto py-4'>
-        <Link href="/dashboard/send" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Transferir dinero </Link>
+        <Link href="/dashboard/transferences" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Transferir dinero </Link>
         <Link href="/dashboard/servicios" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Pagar Servicios  </Link>
         <Link href="/dashboard/get-money" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Ingresar Dinero  </Link>
       </section>

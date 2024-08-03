@@ -1,7 +1,8 @@
 'use client'
 import { getMovesRequest } from "@/axios/Moves"
-// import { depositMoneyRequest, sendMoneyRequest } from "@/peticiones/trans"
+import { depositMoneyRequest, sendMoneyRequest } from "../axios/transferences"
 import { createContext, useContext, useState } from "react"
+import { useRouter } from "next/navigation"
 
 const TransactionContext = createContext()
 
@@ -15,10 +16,25 @@ export const useTransaction = () => {
 
 export function TransactionProvider({ children }) {
 
+    const router = useRouter()
     const [moves, setMoves] = useState([])
     const [business, setBussines] = useState([])
     const [transactionDetails, setTransactionDetails] = useState(null);
+    const [errorsTransaction, setErrorsTransaction] = useState([]);
 
+
+    const sendMoney = async (trans) => {
+        try {
+            const res = await sendMoneyRequest(trans)
+            setTransactionDetails(res.data);
+            console.log("El res del transition es : ", res.data)
+            router.push("/dashboard/transferences/success")
+        } catch (error) {
+            console.log(error)         
+            console.log(error.response.data)
+            setErrorsTransaction(error.response.data)
+        }
+    }
 
     const getMoves = async () => {
         try {
@@ -40,7 +56,7 @@ export function TransactionProvider({ children }) {
     }
 
     return (
-        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business }}>
+        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business ,sendMoney,errorsTransaction }}>
             {children}
         </TransactionContext.Provider>
     )
