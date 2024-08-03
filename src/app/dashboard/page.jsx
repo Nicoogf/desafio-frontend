@@ -6,11 +6,15 @@ import React, { useEffect, useState } from 'react'
 import { FaRegCopy } from 'react-icons/fa'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
 import toast, { Toaster } from 'react-hot-toast';
+import { useTransaction } from '@/context/TransactionContext'
+import { TransactionType } from '@/utils/enum'
+import { formatCurrency, formatDate } from '@/utils/funcionalidades'
 
 const DashboarPage = () => {
   const router = useRouter()
   const { user, loading, isAuthenticated } = useAuth()
   const [ showcbu , setShowCbu ] = useState(false)
+  const { moves, getMoves } = useTransaction()
  
 
 const handleMenu = () => {
@@ -30,12 +34,24 @@ const handleMenu = () => {
     setSearchTerm(e.target.value)
   }
 
-  console.log(user)
+
   const [ dinero , setDinero ] = useState(user?.dinero)
  
+
   useEffect( () => {
     setDinero(user?.dinero)
+    getMoves(user?.id)
   } , [user])
+
+
+  console.log(moves)
+  const [searchTerm, setSearchTerm] = useState('');
+  const elementsWithDate = moves.filter(element => element.date);
+  elementsWithDate.sort((a, b) => new Date(b.date) - new Date(a.date));
+  const filteredElements = elementsWithDate.filter(element =>
+    element.details.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const top10RecentElements = filteredElements.slice(0, 10);
 
   return (
     <>
@@ -69,7 +85,7 @@ const handleMenu = () => {
 
       <section className='flex flex-col gap-y-2 mt-4 w-[80%] max-w-[595px]  mx-auto py-4'>
         <Link href="/dashboard/transferences" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Transferir dinero </Link>
-        <Link href="/dashboard/servicios" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Pagar Servicios  </Link>
+        <Link href="/dashboard/pay-services" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Pagar Servicios  </Link>
         <Link href="/dashboard/get-money" className='bg-lime-500 py-3 text-lime-950 font-semibold rounded-md text-center'> Ingresar Dinero  </Link>
       </section>
 
@@ -84,7 +100,7 @@ const handleMenu = () => {
 
             <section className='w-full h-[260px] rounded-md p-2 flex flex-col gap-4 overflow-hidden overflow-y-scroll'>
 
-{/* 
+
               {top10RecentElements.length > 0 ? (
               top10RecentElements.map(movimiento => (
 
@@ -101,8 +117,8 @@ const handleMenu = () => {
                   
                 </article>
               ))):(
-                <article> No hay movimientos que coincidan</article>
-              )} */}
+                <article> No hay movimientos realizados</article>
+              )}
 
 
 

@@ -21,6 +21,7 @@ export function TransactionProvider({ children }) {
     const [business, setBussines] = useState([])
     const [transactionDetails, setTransactionDetails] = useState(null);
     const [errorsTransaction, setErrorsTransaction] = useState([]);
+    
 
 
     const sendMoney = async (trans) => {
@@ -36,7 +37,7 @@ export function TransactionProvider({ children }) {
         }
     }
 
-    const getMoves = async () => {
+    const getMoves = async (userid) => {
         try {
             const res = await getMovesRequest()       
             setMoves(res.data)
@@ -56,8 +57,16 @@ export function TransactionProvider({ children }) {
         }
     }
 
+    const VerifyUser = async (info_pago) => {
+        try {
+            const res = await verifyUserRequest(info_pago)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
-        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business ,sendMoney,errorsTransaction ,transactionDetails }}>
+        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business ,sendMoney,errorsTransaction ,transactionDetails , VerifyUser}}>
             {children}
         </TransactionContext.Provider>
     )
