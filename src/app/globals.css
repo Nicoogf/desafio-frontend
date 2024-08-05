@@ -32,7 +32,16 @@ body {
 }
 
 li{
-  list-style:none
+  list-style:none;
+}
+
+.pagination li.active a {
+  color: limegreen; /* Cambia este color según tus necesidades */
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: white;
 }
 
 input[type=number]::-webkit-inner-spin-button, 

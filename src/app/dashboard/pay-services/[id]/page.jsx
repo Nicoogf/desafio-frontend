@@ -26,14 +26,15 @@ const ServicesDetailPage  = () => {
     })
 
   return (
-    <section>
-        <form className='w-[80%] mx-auto bg-slate-700 rounded-md' onSubmit={onSubmit}>
-            <h6> Numero de cuenta sin el primer 2 </h6>
-            <input value={user?.id} className='text-black w-[60%]' name="user_id"
+    <section className='h-[100%] flex justify-center items-center'>
+        <form className='w-[80%] mx-auto bg-slate-950 rounded-md p-4' onSubmit={onSubmit}>
+          <h3 className='bg-slate-800 p-2 rounded-md text-white text-center mb-6'> Datos del Cliente </h3>
+            <h6 className=' text-center text-white py-1 '> Ingresa el ID de Usuario </h6>
+            <input value={user?.id} className='w-[60%] block mx-auto p-2 rounded-md bg-slate-800 text-greenlime' name="user_id"
             {...register("user_id")}/>
 
-            <p> Es el ID del usuario notificado al momento de crear la cuenta , puedes controlarlo desde Tu Perfil</p>
-            <button className='bg-greenlime text-lime-950 p-2 rounded-md'  type='submit' > Continar </button>
+            <p className='text-xs text-center  py-2 text-gray-400 '> Es el ID del usuario notificado al momento de crear la cuenta , puedes controlarlo desde Tu Perfil</p>
+            <button className='bg-greenlime text-lime-950 p-2 rounded-md block mx-auto w-[70%]'  type='submit' > Continar </button>
         </form>
     </section>
   )

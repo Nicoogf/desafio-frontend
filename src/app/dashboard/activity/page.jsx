@@ -1,14 +1,17 @@
 'use client'
 
+import { useAuth } from '@/context/AuthContext';
 import { useTransaction } from '@/context/TransactionContext';
 import { formatDate } from '@/utils/funcionalidades';
 import { formatCurrency } from '@/utils/funcionalidades';
 import React, { useEffect, useState, useMemo } from 'react'
 import { BiTransfer } from "react-icons/bi";
+import Skeleton from 'react-loading-skeleton';
 import ReactPaginate from 'react-paginate';
 
 const MovementsPage = () => {
     const { getMoves, moves } = useTransaction();
+    const { loading } = useAuth()
     const [filterPeriod, setFilterPeriod] = useState('');
     const [filterType, setFilterType] = useState('');
     const [selectedButton, setSelectedButton] = useState(null);
@@ -21,8 +24,8 @@ const MovementsPage = () => {
     const [expandedId, setExpandedId] = useState(null);
 
     const handleDetails = (id) => {
-      setExpandedId(expandedId === id ? null : id);
-    };  
+        setExpandedId(expandedId === id ? null : id);
+    };
 
     useEffect(() => {
         getMoves();
@@ -140,11 +143,11 @@ const MovementsPage = () => {
     }, [filteredMovements, currentPage]);
 
     return (
-        <div>
+        <div className='text-white'>
             <h2 className='text-center text-2xl font-semibold my-3'> Movimientos </h2>
 
             <section className='flex flex-row gap-2 py-2 w-full '>
-                <input 
+                <input
                     placeholder='Buscar movimiento'
                     onChange={handleSearchChange}
                     value={searchText}
@@ -164,62 +167,64 @@ const MovementsPage = () => {
                 ))}
             </section>
 
-            <section className='flex flex-row gap-x-2 w-[90%] mx-auto justify-center mt-2'> 
+            <section className='flex flex-row gap-x-2 w-[90%] mx-auto justify-center mt-2'>
                 <select name="typeFilter" id="typeFilter" className='bg-slate-900 text-greenlime p-2 outline-none' onChange={handleFilterType}>
                     <option value="">Elije una opción</option>
                     <option value="Ingresos">Ingresos</option>
                     <option value="Egresos">Egresos</option>
                 </select>
 
-                <div onClick={handleButton} className={`flex flex-row items-center rounded-lg gap-x-2 ${buttonDate ? "bg-slate-950 text-greenlime" : " bg-greenlime text-lime-950" } text-greenlime cursor-pointer border border-lime-500 py-1 px-3`} >
-                    <BiTransfer className={` text-2xl ${buttonDate ? "-rotate-90 text-greenlime" : "rotate-90" } transition-all duration-200`} />
-                    <h3> { buttonDate ? "Más recientes" : "Mas Antiguos"} </h3>
+                <div onClick={handleButton} className={`flex flex-row items-center rounded-lg gap-x-2 ${buttonDate ? "bg-slate-950 text-greenlime" : " bg-greenlime text-lime-950"} text-greenlime cursor-pointer border border-lime-500 py-1 px-3`} >
+                    <BiTransfer className={` text-2xl ${buttonDate ? "-rotate-90 text-greenlime" : "rotate-90"} transition-all duration-200`} />
+                    <h3> {buttonDate ? "Más recientes" : "Mas Antiguos"} </h3>
                 </div>
             </section>
 
             <div className='w-full flex flex-col justify-center items-center'>
-                <input 
-                    type="range" 
-                    min="0" 
-                    max="90000" 
-                    step="1000" 
-                    value={rangeValue} 
+                <input
+                    type="range"
+                    min="0"
+                    max="90000"
+                    step="1000"
+                    value={rangeValue}
                     onChange={handleRangeChange}
                     className='range w-[80%] mx-auto my-4 bg-red-500 '
                 />
                 <span className='text-greenlime text-lg'>{`Movimientos menores a  $${rangeValue}`}</span>
                 <button className='bg-greenlime p-2 rounded-md text-lime-950 font-semibold' onClick={resetFilters}> Resetear Filtros </button>
             </div>
+            {loading ? <Skeleton variant="rect" width={"100%"} height={400} animation="wave" baseColor="#111827" highlightColor="#374151" borderRadius="0.25rem" /> : (
+                <section className='w-[90%] mx-auto flex flex-col gap-y-2 h-[400px] overflow-hidden overflow-y-scroll py-2 mt-4 relative pt-4'>
+                    {paginatedMovements.map((movimiento, i) => (
+                        <article
+                            key={i}
+                            className={`flex flex-col bg-slate-800 p-3 rounded-md transition-all duration-200 ${expandedId === movimiento._id ? "pb-2" : ""}`}
+                            onClick={() => handleDetails(movimiento._id)}
+                        >
+                            <div className='flex flex-row justify-between items-center w-full'>
+                                <div className='flex flex-row items-center gap-x-2'>
+                                    <div className={`h-3 w-3 ${['deposit_completed', 'transfer_received', 'payment_received'].includes(movimiento.type) ? "bg-lime-500" : "bg-red-500"} rounded-full `} />
+                                    <h6 className={`transition-all duration-300 ${(expandedId === movimiento._id) ? "text-greenlime" : ""}`}>{movimiento?.details}</h6>
+                                </div>
+                                <div className='flex flex-col'>
+                                    <h6>{formatDate(movimiento?.date)}</h6>
+                                    <h6>${formatCurrency(movimiento?.amount)}</h6>
+                                </div>
+                            </div>
 
-            <section className='w-[90%] mx-auto flex flex-col gap-y-2 h-[600px] overflow-hidden overflow-y-scroll py-2 mt-4 relative pt-4'>
-            {paginatedMovements.map((movimiento, i) => (
-        <article
-          key={i}
-          className={`flex flex-col bg-slate-800 p-3 rounded-md transition-all duration-200 ${expandedId === movimiento._id ? "pb-2" : ""}`}
-          onClick={() => handleDetails(movimiento._id)}
-        >
-          <div className='flex flex-row justify-between items-center w-full'>
-            <div className='flex flex-row items-center gap-x-2'>
-              <div className={`h-3 w-3 ${['deposit_completed', 'transfer_received', 'payment_received'].includes(movimiento.type) ? "bg-lime-500" : "bg-red-500"} rounded-full `} />
-              <h6 className={`transition-all duration-300 ${(expandedId === movimiento._id) ? "text-greenlime" : ""}`}>{movimiento?.details}</h6>
-            </div>
-            <div className='flex flex-col'>
-              <h6>{formatDate(movimiento?.date)}</h6>
-              <h6>${formatCurrency(movimiento?.amount)}</h6>
-            </div>
-          </div>
+                            {expandedId === movimiento._id && (
+                                <div>
+                                    <h4>Pago Exitoso</h4>
+                                    <h4>Numero de operacion: {movimiento._id}</h4>
+                                </div>
+                            )}
+                        </article>
+                    ))}
+                </section>
+            )}
 
-          {expandedId === movimiento._id && (
-            <div>
-              <h4>Pago Exitoso</h4>
-              <h4>Numero de operacion: {movimiento._id}</h4>
-            </div>
-          )}
-        </article>
-      ))}
-            </section>
 
-            <div className='w-[90%] mx-auto flex justify-center mt-4'>
+            <div className='w-[90%] mx-auto flex flex-row justify-center mt-4'>
                 <ReactPaginate
                     previousLabel={'Anterior'}
                     nextLabel={'Siguiente'}
@@ -231,6 +236,7 @@ const MovementsPage = () => {
                     containerClassName={'pagination'}
                     activeClassName={'active'}
                     disabledClassName={'disabled'}
+                    className='flex flex-row gap-x-3'
                 />
             </div>
         </div>
