@@ -56,9 +56,16 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const logout = () =>{
+        Cookies.remove("token")
+        setIsAuthenticated(false)
+        setUser(null)
+    }
+
     const editUser = async (user) => {
         try {
             const res = await editUserRequest(user)
+            console.log(res.data)
         } catch (error) {
             console.log(error)
         }
@@ -96,7 +103,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ signUp, errors, setError, signIn, user ,isAuthenticated , editUser}}>
+        <AuthContext.Provider value={{ signUp, errors, setError, signIn, user ,isAuthenticated , editUser,logout}}>
             {children}
         </AuthContext.Provider>
     )

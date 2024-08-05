@@ -20,7 +20,7 @@ const LoguinPage  = () => {
 
   return (
     <>
-    <section className=' w-[80%] mx-auto bg-gray-800 rounded-md p-4 mt-2'>
+    <section className=' w-[80%] mx-auto bg-gray-800 rounded-md p-4 mt-2 text-white'>
 
         <h2> Tus datos</h2>
         <div className='flex flex-row justify-between items-center'>
@@ -31,7 +31,7 @@ const LoguinPage  = () => {
             </div>
         </div>
 
-        <div className='flex flex-row justify-between items-center'>
+        <div className='flex flex-row justify-between items-center '>
             <h6 className=' text-sm w-[35%]'> Nombre y Apellido  </h6>
             <div className='flex flex-row justify-between items-center gap-x-2  w-[65%]'>
                 <h6 className='text-end  text-sm'> {user?.name} {user?.lastname} </h6>
@@ -71,7 +71,7 @@ const LoguinPage  = () => {
 
     </Link>
 
-    <section className=' w-[80%] mx-auto bg-gray-800 rounded-md p-4 mt-2'>
+    <section className=' w-[80%] mx-auto bg-gray-800 rounded-md p-4 mt-2 text-white'>
     <h3 className='font-semibold'> Copia tu cvu o alias para ingresar o transferir dinero desde otra cuenta</h3>
    
     <CopyToClipboard text={user?.cbu}>

@@ -37,10 +37,11 @@ const DepositPage = () => {
   })
 
   useEffect(() => {
-    getCards()
-  }, [])
+    getCards(user?.id)
+  }, [user])
 
-  console.log(user)
+
+  console.log(cards)
   return (
     <section>
       <form onSubmit={onSubmit} className='mt-10 bg-gray-950 flex flex-col w-[80%] max-w-[720px] mx-auto p-4 gap-y-2 text-black'>
@@ -52,19 +53,12 @@ const DepositPage = () => {
         <div class="flex flex-col space-y-2">
           <label for="card" class="text-lime-500 font-semibold">Tarjeta</label>
           <div class="space-y-1">
-            {cards.map((card, i) => (
-              <label key={i} class="flex items-center justify-between">
-                <span class="ml-2 text-gray-700">{card.name}</span>
-                <span className='text-white'> $ {formatCurrency(card.mount)} </span>
-                <input type="radio" id={`rol-${card.name}`} name="rol" value={card._id} class="hidden-input" {...register("card", { required: true })} />
-              </label>
-            ))}
             {cards.length < 1 ? (
               <h6> No puedes ingresar dinero porque no tienes ninguna tarjeta asociada</h6>
             ) : (
               cards.map((card, i) => (
                 <label key={i} class="flex items-center justify-between">
-                  <span class="ml-2 text-gray-700">{card.name}</span>
+                  <span class="ml-2 text-gray-700">{card?.desc}</span>
                   <span className='text-white'> $ {formatCurrency(card.mount)} </span>
                   <input type="radio" id={`rol-${card.name}`} name="rol" value={card._id} class="hidden-input" {...register("card", { required: true })} />
                 </label>

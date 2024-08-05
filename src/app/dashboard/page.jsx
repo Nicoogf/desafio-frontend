@@ -36,6 +36,7 @@ const handleMenu = () => {
 
 
   const [ dinero , setDinero ] = useState(user?.dinero)
+  console.log(user?.cbu)
  
 
   useEffect( () => {
@@ -44,7 +45,7 @@ const handleMenu = () => {
   } , [user])
 
 
-
+  console.log(user)
   const [searchTerm, setSearchTerm] = useState('');
   const elementsWithDate = moves.filter(element => element.date);
   elementsWithDate.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -55,9 +56,9 @@ const handleMenu = () => {
 
   return (
     <>
-      <h3 className='w-[80%] max-w-[595px] mx-auto my-6 font-semibold text-lg'> Bienvenido , {user?.name} a Digital Money </h3>
+      <h3 className='w-[80%] max-w-[595px] mx-auto my-6 font-semibold text-lg text-white'> Bienvenido , {user?.name} a Digital Money </h3>
 
-      <section className=' w-[80%] max-w-[595px] mx-auto bg-gray-800 rounded-md p-4 mt-2 relative overflow-hidden'>
+      <section className=' w-[80%] max-w-[595px] mx-auto bg-gray-800 rounded-md p-4 mt-2 relative overflow-hidden text-white'>
 
         <div className=' flex flex-row justify-end gap-x-4 mr-4 p-2 '>
           <Link href="/dashboard/cards"> Ver tarjetas </Link>
@@ -66,16 +67,16 @@ const handleMenu = () => {
 
         <div className="ml-4 -mt-3">
           <h3 className='text-sm'> Dinero disponible </h3>
-          <p className='text-4xl font-bold'> $ {user?.dinero} </p>
+          <p className='text-4xl font-bold'> $ {formatCurrency(dinero)} </p>
         </div>
 
         <CopyToClipboard text={user?.cbu}>
-        <div className={`absolute text-lime-950 bottom-0 right-0 px-4 py-2 flex flex-row gap-x-2 items-center bg-greenlime rounded-tl-lg rounded-br-lg  transition-all duration-300 cursor-pointer ${showcbu ? "translate-x-0" : "translate-x-48"}`}
+        <div className={`absolute text-lime-950 bottom-0 right-0 px-4 py-2 flex flex-row gap-x-2 items-center bg-greenlime rounded-tl-lg rounded-br-lg  transition-all duration-300 cursor-pointer ${showcbu ? "translate-x-0" : "translate-x-64"}`}
          onClick={()=> {
           toast.success("CBU copiado en el Portapapeles")
           handleMenu()
           }}>
-          <div> <FaRegCopy  className='text-lime-950'/> </div>
+          <div className='text-red-400'> <FaRegCopy  className='text-lime-950'/> </div>
           <div className='text-lime-950'>  {user?.cbu} </div>          
         </div>
         </CopyToClipboard>
@@ -93,9 +94,9 @@ const handleMenu = () => {
 
 
         <section>
-          {/* <input onChange={onChangeInput} value={searchTerm} placeholder="Buscar por actividad " className='bg-gray-700 block w-full mx-auto mt-4 text-lime-500 p-2 outline-none rounded-md' /> */}
+          <input onChange={onChangeInput} value={searchTerm} placeholder="Buscar por actividad " className='bg-gray-700 block w-full mx-auto mt-4 text-lime-500 p-2 outline-none rounded-md' />
 
-          <div >
+          <div className='text-white'>
             <h4 className='font-bold my-2'> Tu actividad </h4>
 
             <section className='w-full h-[260px] rounded-md p-2 flex flex-col gap-4 overflow-hidden overflow-y-scroll'>
@@ -126,7 +127,7 @@ const handleMenu = () => {
 
 
           </div>
-          <Link href="/dashboard/movements" className='text-sm block w-[80%] mx-auto mt-4 text-end text-blue-400'> Ver toda la actividad </Link>
+          <Link href="/dashboard/activity" className='text-sm block w-[80%] mx-auto mt-4 text-end text-blue-400'> Ver toda la actividad </Link>
         </section>
 
       </section>

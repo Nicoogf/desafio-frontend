@@ -12,6 +12,7 @@ const LoguinPage = () => {
     const { user, logout, editUser} = useAuth()
     const router = useRouter()
     const { handleSubmit, register, setValue } = useForm()
+   
 
     const aliasSplit = splitAlias(user?.alias || 'alias.default.value') // Proveer un valor por defecto en caso de que `user?.alias` sea undefined
 
@@ -43,8 +44,9 @@ const LoguinPage = () => {
             setAliasTres(value)
         }
     }
-    console.log(aliasUno)
+
     const newAlias = `${aliasUno}.${aliasDos}.${aliasTres}` 
+
 
     const onSubmit = handleSubmit((data) => {        
         console.log(newAlias)
@@ -59,6 +61,7 @@ const LoguinPage = () => {
         }
         console.log(newDataUser)
         editUser(newDataUser)
+        router.push("/dashboard")
     })
 
     return (

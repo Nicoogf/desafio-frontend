@@ -45,7 +45,7 @@ export async function POST(request) {
         path: '/'   
       }); 
 
-      console.log(userFound)
+      console.log(userFound.cbu)
 
       return NextResponse.json({
         id: userFound._id,

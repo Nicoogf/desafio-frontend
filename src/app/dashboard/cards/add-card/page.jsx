@@ -94,7 +94,7 @@ const AddCardPage = () => {
                        type='text' 
                        placeholder='Ingresar Descripcion de la tarjeta '
                        autoFocus
-                       {...register("name")}
+                       {...register("desc")}
                        onChange={onChange}
                        onFocus={handleInputFocus}
                      

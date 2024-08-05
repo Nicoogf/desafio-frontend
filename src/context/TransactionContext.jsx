@@ -76,6 +76,7 @@ export function TransactionProvider({ children }) {
     }
 
     const payServices = async (service_id, data) => {
+        console.log(service_id)
         try {
             const res = await payServicesRequest(service_id, data)
             console.log("El valor del pago de servicio :", res)

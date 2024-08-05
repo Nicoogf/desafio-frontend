@@ -134,7 +134,7 @@ export async function PATCH(request) {
 
       const body = await request.json();
       const { email, name, lastname, dni, phone, alias, cbu } = body;
-      console.log(cbu)
+      console.log(alias)
 
       // Buscar al usuario en la base de datos por su email
       const userFound = await User.findOne({ email });
