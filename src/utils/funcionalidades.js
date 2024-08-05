@@ -1,3 +1,7 @@
+import { format, parseISO } from 'date-fns';
+import { es } from 'date-fns/locale';
+
+
 export function validarEmail(email) {
     // Verificamos si el email contiene el símbolo '@' 
     // y la @ no está al inicio ni al final
@@ -128,5 +132,6 @@ export function generateRandomPrice() {
   // Convierte el número a un flotante
   return parseFloat(roundedNum);
 }
+
 
 

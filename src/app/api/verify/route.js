@@ -26,7 +26,9 @@ const token = request.cookies.get("token");
       dinero: userFound.dinero,
       phone: userFound.phone,
       cbu: userFound.cbu,
-      alias: userFound.alias
+      alias: userFound.alias,
+      createdAt: userFound.createdAt,
+      updatedAt: userFound.updatedAt,
     });
   } catch (error) {
     return NextResponse.json({ message: "No autorizado" }, { status: 400 });

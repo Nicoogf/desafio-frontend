@@ -62,7 +62,7 @@ const DashboarPage = () => {
           <span> {user?.name}  </span>
         )}
 
-        <p>a Digital Money  </p>
+        <p className='ml-2'> a Digital Money  </p>
       </h3>
 
       <section className=' w-[80%] max-w-[595px] mx-auto bg-gray-800 rounded-md p-4 mt-2 relative overflow-hidden text-white'>
@@ -117,7 +117,7 @@ const DashboarPage = () => {
                   {top10RecentElements.length > 0 ? (
                     top10RecentElements.map(movimiento => (
 
-                      <article key={movimiento._id} className='flex flex-row justify-between items-center bg-gray-700 p-2 rounded-md mb-2'>
+                      <article key={movimiento._id} className='flex flex-row justify-between items-center bg-gray-700 p-2 rounded-md'>
                         <div className='flex flex-row items-center gap-x-2'>
                           <div className={
                             `${movimiento.type === TransactionType.DEPOSIT_COMPLETED || movimiento.type === TransactionType.PAYMENT_RECEIVED || movimiento.type === TransactionType.TRANSFER_RECEIVED ? "bg-lime-500" : "bg-red-500"} rounded-full h-2 w-2`} />
@@ -142,7 +142,7 @@ const DashboarPage = () => {
 
 
           </div>
-          <Link href="/dashboard/activity" className='text-sm block w-[80%] mx-auto mt-4 text-end text-blue-400'> Ver toda la actividad </Link>
+          <Link href="/dashboard/activity" className='text-sm block w-[100%] mx-auto mt-4 text-end text-blue-400'> Ver toda la actividad </Link>
         </section>
 
       </section>
