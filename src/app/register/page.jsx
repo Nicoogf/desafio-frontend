@@ -37,7 +37,7 @@ const RegisterPage = () => {
   ].filter(Boolean);
 
   return (
-    <main className='relative z-50 w-full bg-slate-900 h-[calc(100vh-40px)] max-w-[1920px] rounded-md flex flex-col items-center justify-center overflow-hidden'>      
+    <main className='relative z-50  text-white w-full bg-gray-900 h-[calc(100vh-40px)] max-w-[1920px] rounded-md flex flex-col items-center justify-center overflow-hidden'>      
       
       {RegisterErrors.map((error, i) => (
         <div key={i} className='w-full absolute top-0 bg-red-700 text-center '> {error} </div>
@@ -71,52 +71,52 @@ const RegisterPage = () => {
 
       <form onSubmit={OnSubmit} className='flex flex-col gap-y-2 text-gray-400 '>
 
-        <select name="rol" placeholder='Rol' className='bg-gray-700 p-2 rounded-md outline-none border border-lime-500 text-lime-500 font-semibold'
+        <select name="rol" placeholder='Rol' className='bg-slate-800 p-2 rounded-md outline-none border border-greenlime text-greenlime font-semibold'
           {...register("rol", { required: true })} onChange={onChangeRol}>
-          <option className='bg-lime-500 text-lime-950 font-semibold'>Usuario</option>
-          <option className='bg-lime-500 text-lime-950 font-semibold' >Empresa</option>
+          <option className='bg-slate-800 text-greenlime font-semibold '>Usuario</option>
+          <option className='bg-slate-800 text-greenlime font-semibold ' >Empresa</option>
         </select>
 
-        <div className='border-b border-lime-300 w-[80%] mx-auto my-4' />
+        <div className='border-b border-greenlime w-[80%] mx-auto my-4' />
 
         {role === "Usuario" && (
           <>
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="name" type='text' placeholder='Nombre'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="name" type='text' placeholder='Nombre'
               {...register("name", { required: true })}
             />
           
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="lastname" type='text' placeholder='Apellido'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="lastname" type='text' placeholder='Apellido'
               {...register("lastname", { required: true })} />
          
 
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="dni" type='number' placeholder='Documento'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="dni" type='number' placeholder='Documento'
               {...register("dni", { required: true })}
             />
 
            
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="email" type='email' placeholder='Email'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="email" type='email' placeholder='Email'
               {...register("email", { required: true })} />
 
            
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="phone" type='number' placeholder='Telefono'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="phone" type='number' placeholder='Telefono'
               {...register("phone", { required: true })}
             />
 
          
 
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="password" type='password' placeholder='Contraseña'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="password" type='password' placeholder='Contraseña'
               {...register("password", { required: true })} />
 
           
 
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="confirmPassword" type='password' placeholder='Confirmar Contraseña'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="confirmPassword" type='password' placeholder='Confirmar Contraseña'
               {...register("confirmPassword", { required: true })} />
 
            
@@ -125,55 +125,55 @@ const RegisterPage = () => {
 
         {role === "Empresa" && (
           <>
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="companyName" type='text' placeholder='Nombre de la Empresa'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="companyName" type='text' placeholder='Nombre de la Empresa'
               {...register("companyName", { required: true })}
             />
 
 
-            <select name="businessField" placeholder='Area' className='bg-gray-700 p-2 rounded-md outline-none border border-lime-500 text-lime-500 font-semibold'
+            <select name="businessField" placeholder='Area' className='bg-slate-800 p-2 rounded-md outline-none  text-greenlime font-semibold'
               {...register("businessField", { required: true })} >
-              <option className='bg-lime-500 text-lime-950 font-semibold'>Internet </option>
-              <option className='bg-lime-500 text-lime-950 font-semibold' >Telefonia </option>
-              <option className='bg-lime-500 text-lime-950 font-semibold' >Televicion </option>
-              <option className='bg-lime-500 text-lime-950 font-semibold' >Streaming </option>
-              <option className='bg-lime-500 text-lime-950 font-semibold' >Servicios </option>
+              <option className='bg-slate-800 text-greenlime font-semibold'>Internet </option>
+              <option className='bg-slate-800 text-greenlime font-semibold' >Telefonia </option>
+              <option className='bg-slate-800 text-greenlime font-semibold' >Televicion </option>
+              <option className='bg-slate-800 text-greenlime font-semibold' >Streaming </option>
+              <option className='bg-slate-800 text-greenlime font-semibold' >Servicios </option>
             </select>
 
             
 
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="cuit" type='number' placeholder='CUIT'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="cuit" type='number' placeholder='CUIT'
               {...register("cuit", { required: true })}
             />
 
          
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="email" type='email' placeholder='Email'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="email" type='email' placeholder='Email'
               {...register("email", { required: true })} />
 
        
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="phone" type='number' placeholder='Telefono'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="phone" type='number' placeholder='Telefono'
               {...register("phone", { required: true })}
             />
 
       
 
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="password" type='password' placeholder='Contraseña'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="password" type='password' placeholder='Contraseña'
               {...register("password", { required: true })} />
 
             
 
 
-            <input className='bg-gray-700 p-2 rounded-md outline-none' name="confirmPassword" type='password' placeholder='Confirmar Contraseña'
+            <input className='bg-slate-800 p-2 rounded-md outline-none' name="confirmPassword" type='password' placeholder='Confirmar Contraseña'
               {...register("confirmPassword", { required: true })} />
 
           
           </>
         )}
 
-        <button className='bg-lime-600 text-white p-2 rounded-md' type='submit'>
+        <button className='bg-greenlime text-lime-950 p-2 rounded-md font-semibold border border-transparent transition-all duration-100 hover:border-gray-950 hover:bg-slate-300 hover:text-gray-900' type='submit'>
           Registrar
         </button>
         <p className='text-white text-sm'> ¿Ya tienes una cuenta?
