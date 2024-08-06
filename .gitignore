@@ -34,3 +34,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+src/utils/~$test_cases.xlsx
+src/utils/~$test_cases.xlsx

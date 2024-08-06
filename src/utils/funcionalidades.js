@@ -99,13 +99,12 @@ export function formatCurrency(amount) {
 
 
 export function lastFourNumbers(number) {
-  // Convertimos el número a una cadena
+  if (typeof number !== 'number' || isNaN(number)) {
+    return NaN; // O cualquier otro valor que indique un error
+  }
+  
   const numberStr = number.toString();
-  
-  // Obtenemos los últimos 4 caracteres de la cadena
   const lastFourDigits = numberStr.slice(-4);
-  
-  // Convertimos la cadena de vuelta a un número y lo devolvemos
   return parseInt(lastFourDigits, 10);
 }
 
