@@ -1,3 +1,4 @@
+import React from 'react';
 import { Background } from "@/components/background/Background";
 import "./globals.css";
 import { AuthProvider } from "@/context/AuthContext";

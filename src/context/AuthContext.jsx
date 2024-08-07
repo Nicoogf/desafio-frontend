@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react';
 import { editUserRequest, loginRequest, registerRequest, verifyToken } from "@/axios/Auth"
 import { useRouter } from "next/navigation"
 import Cookies from "js-cookie";
