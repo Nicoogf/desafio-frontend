@@ -143,8 +143,8 @@ const MovementsPage = () => {
     }, [filteredMovements, currentPage]);
 
     return (
-        <div className='text-white'>
-            <h2 className='text-center text-2xl font-semibold my-3'> Movimientos </h2>
+        <div className='text-white pb-8'>
+            <h2 className='text-center text-2xl font-semibold mt-3 mb-1 lg:my-3'> Movimientos </h2>
 
             <section className='flex flex-row gap-2 py-2 w-full '>
                 <input
@@ -159,7 +159,7 @@ const MovementsPage = () => {
                 {['hoy', 'ayer', 'última semana', 'últimos 15 días', 'último mes', 'últimos 3 meses'].map((period, index) => (
                     <h6
                         key={index}
-                        className={`text-greenlime  rounded-md w-[160px] text-center cursor-pointer ${selectedButton === index ? 'bg-greenlime text-lime-950' : 'bg-slate-950'} border border-greenlime py-1 transition-all duration-500`}
+                        className={`text-greenlime  text-sm md:text-base rounded-md w-[160px] text-center cursor-pointer ${selectedButton === index ? 'bg-greenlime text-lime-950' : 'bg-slate-950'} border border-greenlime py-1 transition-all duration-500`}
                         onClick={() => handleFilterPeriod(period, index)}
                     >
                         {period.charAt(0).toUpperCase() + period.slice(1)}
@@ -167,8 +167,8 @@ const MovementsPage = () => {
                 ))}
             </section>
 
-            <section className='flex flex-row gap-x-2 w-[90%] mx-auto justify-center mt-2'>
-                <select name="typeFilter" id="typeFilter" className='bg-slate-900 text-greenlime p-2 outline-none' onChange={handleFilterType}>
+            <section className='flex flex-row gap-x-2 w-[90%] mx-auto justify-center mt-2 '>
+                <select name="typeFilter" id="typeFilter" className='bg-gray-950 border rounded-lg text-xs md:text-base border-greenlime text-greenlime p-2 outline-none' onChange={handleFilterType}>
                     <option value="">Elije una opción</option>
                     <option value="Ingresos">Ingresos</option>
                     <option value="Egresos">Egresos</option>
@@ -176,7 +176,7 @@ const MovementsPage = () => {
 
                 <div onClick={handleButton} className={`flex flex-row items-center rounded-lg gap-x-2 ${buttonDate ? "bg-slate-950 text-greenlime" : " bg-greenlime text-lime-950"} text-greenlime cursor-pointer border border-lime-500 py-1 px-3`} >
                     <BiTransfer className={` text-2xl ${buttonDate ? "-rotate-90 text-greenlime" : "rotate-90"} transition-all duration-200`} />
-                    <h3> {buttonDate ? "Más recientes" : "Mas Antiguos"} </h3>
+                    <h3 className='text-xs md:text-base'> {buttonDate ? "Más recientes" : "Mas Antiguos"} </h3>
                 </div>
             </section>
 
@@ -188,17 +188,17 @@ const MovementsPage = () => {
                     step="1000"
                     value={rangeValue}
                     onChange={handleRangeChange}
-                    className='range w-[80%] mx-auto my-4 bg-red-500 '
+                    className='range w-[80%] mx-auto my-2 md:my-4 bg-red-500 '
                 />
-                <span className='text-greenlime text-lg'>{`Movimientos menores a  $${rangeValue}`}</span>
-                <button className='bg-greenlime p-2 rounded-md text-lime-950 font-semibold' onClick={resetFilters}> Resetear Filtros </button>
+                <span className='text-greenlime text-xs mb-2 md:text-lg'>{`Movimientos menores a  $${rangeValue}`}</span>
+                <button className='bg-greenlime p-2 rounded-md text-lime-950 font-semibold border border-transparent hover:bg-slate-300 hover:text-gray-950 hover:border-gray-950 transition-all duration-100 text-sm ' onClick={resetFilters}> Resetear Filtros </button>
             </div>
             {loading ? <Skeleton variant="rect" width={"100%"} height={400} animation="wave" baseColor="#111827" highlightColor="#374151" borderRadius="0.25rem" /> : (
                 <section className='w-[90%] mx-auto flex flex-col gap-y-2 h-[400px] overflow-hidden overflow-y-scroll py-2 mt-4 relative pt-4'>
                     {paginatedMovements.map((movimiento, i) => (
                         <article
                             key={i}
-                            className={`flex flex-col bg-slate-800 p-3 rounded-md transition-all duration-200 ${expandedId === movimiento._id ? "pb-2" : ""}`}
+                            className={`flex flex-col bg-slate-800 p-3 rounded-md transition-all duration-200 text-xs md:text-sm ${expandedId === movimiento._id ? "pb-2" : ""}`}
                             onClick={() => handleDetails(movimiento._id)}
                         >
                             <div className='flex flex-row justify-between items-center w-full'>

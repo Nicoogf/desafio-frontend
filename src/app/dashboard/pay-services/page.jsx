@@ -31,10 +31,10 @@ const ServicesPage = () => {
 console.log(business)
 
   return (
-    <section className='mt-8'>
+    <section className='mt-8 bg-gray-900'>
       <input
         placeholder='Buscar entre todas las empresas registradas en nuestra Plataforma'
-        className='placeholder:font-normal w-[80%] mx-auto block bg-slate-700 p-2 rounded-md text-greenlime font-semibold mb-4'
+        className='placeholder:font-normal w-[80%] mx-auto block bg-slate-800 p-2 rounded-md text-greenlime font-semibold mb-4'
         value={searchTerm}
         onChange={handleSearchChange}
       /> 
@@ -46,7 +46,7 @@ console.log(business)
         }
         
         {filteredBusiness.map((busin, i) => (
-          <Link key={i} className='relative col-span-6 lg:col-span-4 bg-slate-700 flex flex-row items-center border border-slate-600 rounded-md overflow-hidden' href={`/dashboard/pay-services/${busin?._id}`}> 
+          <Link key={i} className='relative col-span-6 lg:col-span-4 bg-slate-800 flex flex-row items-center border border-slate-700 rounded-md overflow-hidden hover:border-greenlime transition-all duration-150' href={`/dashboard/pay-services/${busin?._id}`}> 
             <CompanyImage companyName={busin?.companyName}/>
             <div> 
             <p className='text-lg text-white ml-4'>{busin?.companyName}</p> 

@@ -26,15 +26,15 @@ const ServicesDetailPage  = () => {
     })
 
   return (
-    <section className='h-[100%] flex justify-center items-center'>
-        <form className='w-[80%] mx-auto bg-slate-950 rounded-md p-4' onSubmit={onSubmit}>
-          <h3 className='bg-slate-800 p-2 rounded-md text-white text-center mb-6'> Datos del Cliente </h3>
-            <h6 className=' text-center text-white py-1 '> Ingresa el ID de Usuario </h6>
-            <input value={user?.id} className='w-[60%] block mx-auto p-2 rounded-md bg-slate-800 text-greenlime' name="user_id"
+    <section className='h-[100%] flex justify-center items-center bg-gray-900'>
+        <form className='w-[80%] mx-auto rounded-md p-4' onSubmit={onSubmit}>
+          <h3 className='text-2xl text-white text-center mb-2'> Datos del Cliente </h3>
+            <h6 className=' text-center text-white my-4 '> Ingresa el ID de Usuario </h6>
+            <input value={user?.id} className='outline-none w-full md:w-[80%] max-w-[300px] text-center block mx-auto p-2 rounded-md bg-slate-800 text-greenlime' name="user_id"
             {...register("user_id")}/>
 
-            <p className='text-xs text-center  py-2 text-gray-400 '> Es el ID del usuario notificado al momento de crear la cuenta , puedes controlarlo desde Tu Perfil</p>
-            <button className='bg-greenlime text-lime-950 p-2 rounded-md block mx-auto w-[70%]'  type='submit' > Continar </button>
+            <p className='text-xs text-center  py-2 text-gray-400 my-4'> Es el ID del usuario notificado al momento de crear la cuenta , puedes controlarlo desde Tu Perfil</p>
+            <button className='bg-greenlime font-semibold text-lime-950 border border-transparent hover:bg-slate-300 hover:border-gray-950 hover:text-gray-950 transition-all duration-150 p-2 rounded-md block mx-auto w-[70%] max-w-[300px]'  type='submit' > Continar </button>
         </form>
     </section>
   )

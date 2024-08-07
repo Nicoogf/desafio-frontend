@@ -12,7 +12,7 @@ const Navbar = () => {
 
 
   return (
-    <nav className="md:hidden flex flex-row absolute bottom-0 z-50 w-full bg-gray-950 items-center justify-around p-1">
+    <nav className="md:hidden flex flex-row fixed bottom-0 z-50 w-full bg-gray-950 items-center justify-around p-1">
 
         <Link href="/dashboard" className='text-white font-semibold   text-xs w-[100px] flex flex-col items-center justify-center text-center'>        
         <GoHomeFill className='text-2xl'/>      
@@ -25,7 +25,7 @@ const Navbar = () => {
         </Link>
 
         <Link href="/dashboard/send" className='bg-transparent text-white font-semibold  text-xs w-[100px] flex items-center text-center justify-center'> 
-        <Image src= {Logo} alt="Boton de transferencias" className='bg-lime-500 rounded-full w-12 h-12 object-contain p-1'/>
+        <Image src= {Logo} alt="Boton de transferencias" className='bg-greenlime rounded-full w-12 h-12 object-contain p-1'/>
          </Link>
 
 

@@ -43,13 +43,13 @@ const DepositPage = () => {
 
   console.log(cards)
   return (
-    <section className='h-[100%] flex items-center flex-col'>
+    <section className='h-[100%] flex items-center flex-col bg-gray-900 text-white'>
       <h3 className='my-6 text-white font-semibold text-2xl'> Ingresa dinero a tu cuenta  </h3>
-      <form onSubmit={onSubmit} className='bg-gray-950 flex flex-col w-[80%] max-w-[720px] mx-auto p-4 gap-y-2 text-black rounded-md border border-gray-800 h-[80%]'>
+      <form onSubmit={onSubmit} className='bg-gray-900 flex flex-col w-full sm:w-[80%] max-w-[720px] mx-auto p-4 gap-y-2 text-black h-[80%]'>
 
         <div className='flex flex-row items-center justify-center'>
           <p className='text-greenlime mr-4 '> $ </p>
-        <input name="amount" type="number" className='p-2 bg-slate-800 rounded-md text-greenlime text-center text-xl font-semibold placeholder:text-sm my-4' placeholder="Ingresar Monto"
+        <input name="amount" type="number" className='p-2 bg-gray-950 rounded-md text-greenlime text-center text-xl font-semibold placeholder:text-sm my-4' placeholder="Ingresar Monto"
           {...register("amount", { required: true })}  />
         </div>
        
@@ -59,13 +59,13 @@ const DepositPage = () => {
           <label for="card" class="text-greenlime font-semibold">Tarjetas Registradas</label>
           <div class="space-y-1">
             {cards.length < 1 ? (
-              <h6> No puedes ingresar dinero porque no tienes ninguna tarjeta asociada</h6>
+              <h6 className='text-white'> Cargando tarjetas ...</h6>
             ) : (
               cards.map((card, i) => (
                 <label key={i} class="flex items-center justify-between bg-slate-800 p-3 rounded-md">
                   <span class="ml-2 text-gray-200">{card?.desc}</span>
                   <span className='text-white'> $ {formatCurrency(card.mount)} </span>
-                  <input type="radio" id={`rol-${card.name}`} name="rol" value={card._id} class="hidden-input" {...register("card", { required: true })} />
+                  <input type="radio" id={`rol-${card.name}`} name="rol" value={card._id} classname="hidden-input" {...register("card", { required: true })} />
                 </label>
               ))
             )
@@ -78,7 +78,7 @@ const DepositPage = () => {
           Volver al Dashboard
           </Link>
         ) : (
-          <button className='bg-greenlime text-lime-950 p-2 rounded-md'> Depositar </button>
+          <button className='bg-greenlime text-lime-950 p-2 rounded-md font-semibold'> Depositar </button>
           )}
 
       </form>

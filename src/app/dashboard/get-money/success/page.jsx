@@ -31,18 +31,18 @@ useEffect(() => {
 console.log(transactionDetails)
 
   return (
-    <section className='flex flex-col items-center justify-center h-[100%]'>
+    <section className='flex flex-col items-center justify-center h-[100%] text-white'>
       {transactionDetails ? (
         <>
-          <h2>Deposito exitoso</h2>
-          <FaRegCheckCircle />
-          <p>Desde la tarjeta  { lastFourNumbers( transactionDetails?.card ) } </p>
-          <p>Se deposito </p>
-          <p>Monto: $ {transactionDetails?.amount}</p>
-          <p>Fecha: {new Date().toLocaleString()}</p>
-          <div>
-            <a href={transactionDetails?.pdfUrl} download="transaction.pdf" className='bg-blue-500 p-2 rounded-md'>Descargar comprobante</a>
-            <a href="/dashboard">Ir a inicio</a>
+          <h2 className='text-3xl font-semibold'>Deposito exitoso</h2>
+          <FaRegCheckCircle className='text-greenlime text-8xl my-4'/>
+          <p className='text-sm'>Desde la tarjeta  { lastFourNumbers( transactionDetails?.card ) } </p>
+          <p className='text-sm'>Se deposito </p>
+          <p className='text-sm my-2'>de $ {transactionDetails?.amount}</p>
+          <p className='text-xs'>Fecha: {new Date().toLocaleString()}</p>
+          <div className='my-6 flex flex-col'>
+            <a href={transactionDetails?.pdfUrl} download="transaction.pdf" className='bg-greenlime text-lime-950 p-2 rounded-md font-semibold'>Descargar comprobante</a>
+            <a href="/dashboard" className='text-blue-400  my-4 text-sm text-center'>Ir a inicio</a>
           </div>
          
         </>

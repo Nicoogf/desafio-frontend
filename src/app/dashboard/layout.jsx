@@ -130,7 +130,7 @@ const Layout = ({ children }) => {
 
   const formatDateProfile = (dateString) => {
     if (!dateString) {
-      return 'Fecha no disponible'; // O cualquier mensaje predeterminado que desees
+      return 'Fecha no disponible'; 
     }
   
     const date = parseISO(dateString);
@@ -138,8 +138,9 @@ const Layout = ({ children }) => {
   };
   
   return (
-    <main className='grid grid-cols-12 w-[100%] max-w-[1920px] mx-auto h-[calc(100vh-40px)] rounded-xl border border-gray-800 overflow-hidden bg-slate-800 relative z-50'>
-      <nav className='bg-gray-950 w-full px-2 py-3 flex flex-row items-center justify-between mb-2 absolute top-0'>
+    <main className='grid grid-cols-12 w-[100%] max-w-[1920px] mx-auto h-[calc(100vh-40px)] rounded-xl overflow-hidden bg-gray-900 relative z-50 overflow-y-auto pb-10'>
+
+      <nav className='bg-gray-950 w-full px-2 py-3 flex flex-row items-center justify-between mb-2 fixed lg:absolute z-[9999] top-0'>
         <Image src={Logo} className='w-14' alt="Logo de digital money app" />
           <Link className='flex flex-row items-center gap-x-2' href="/dashboard">
             { loading ? 
@@ -163,7 +164,7 @@ const Layout = ({ children }) => {
         <Link href="/dashboard/profile" className='mb-8 hover:font-semibold transition-all duration-300'> Perfil </Link>
         <Link href="/" onClick={closeSesion} className='hover:font-semibold transition-all duration-300'> Cerrar Sesion </Link>
       </nav>
-      <div className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-7 2xl:col-span-8 mt-14 bg-gray-900">
+      <div className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-7 2xl:col-span-8 mt-10 bg-gray-900 xl:pt-10">
         {children}
       </div>
       <aside className='bg-gray-900 hidden xl:flex xl:col-span-3 mt-14 2xl:col-span-2 border-l border-gray-700 text-white xl:flex-col xl:items-center xl:justify-start'>
@@ -181,7 +182,7 @@ const Layout = ({ children }) => {
           <h4 className='my-2 cursor-pointer text-greenlime'> {user?.alias } </h4>         
         </CopyToClipboard>
       </aside>
-      <footer className='bg-gray-950 absolute bottom-0 w-full p-2 hidden md:block text-lime-500'>
+      <footer className='bg-gray-950 fixed lg:absolute bottom-0 w-full p-2 hidden md:block text-lime-500'>
         Digital Money App 2024
       </footer>
       <Navbar />

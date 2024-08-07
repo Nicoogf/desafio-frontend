@@ -57,7 +57,7 @@ const DashboarPage = () => {
 
   return (
     <>
-      <h3 className='w-[80%] max-w-[595px] mx-auto my-6 font-semibold text-lg text-white flex flex-row'> Bienvenido ,
+      <h3 className='w-[80%] text-sm max-w-[595px] mx-auto my-6 font-semibold md:text-lg text-white flex flex-row'> Bienvenido ,
         {loading ? <Skeleton variant="rect"  width={120} height={22} animation="wave" baseColor="#111827" highlightColor="#374151" /> : (
           <span> {user?.name}  </span>
         )}
@@ -65,15 +65,15 @@ const DashboarPage = () => {
         <p className='ml-2'> a Digital Money  </p>
       </h3>
 
-      <section className=' w-[80%] max-w-[595px] mx-auto bg-gray-800 rounded-md p-4 mt-2 relative overflow-hidden text-white'>
+      <section className=' w-[80%] max-w-[595px] mx-auto bg-slate-800 rounded-md p-4 relative overflow-hidden text-white'>
 
-        <div className=' flex flex-row justify-end gap-x-4 mr-4 p-2 '>
-          <Link href="/dashboard/cards"> Ver tarjetas </Link>
-          <button onClick={handleMenu}> Ver CVU </button>
+        <div className=' flex flex-row justify-end gap-x-4 mr-2  text-sm md:text-base mb-6'>
+          <Link href="/dashboard/cards" className='text-xs'> Ver tarjetas </Link>
+          <button onClick={handleMenu} className='text-xs'> Ver CVU </button>
         </div>
 
-        <div className="ml-4 -mt-3">
-          <h3 className='text-sm'> Dinero disponible </h3>
+        <div className="ml-1 -mt-3">
+          <h3 className='text-xs mb-2'> Dinero disponible </h3>
           <p className='text-4xl font-bold'> $
             {loading ? <Skeleton variant="rect" width={"100%"} height={22} animation="wave" baseColor="#111827" highlightColor="#374151" /> :
               (<span> {formatCurrency(dinero)}  </span>)}
@@ -94,7 +94,7 @@ const DashboarPage = () => {
       </section>
 
 
-      <section className='flex flex-col gap-y-2 mt-4 w-[80%] max-w-[595px]  mx-auto py-4'>
+      <section className='flex flex-col gap-y-2 mt-4 w-[80%] max-w-[595px] mx-auto py-1'>
         <Link href="/dashboard/transferences" className='bg-greenlime  py-3 text-lime-950 font-semibold rounded-md text-center'> Transferir dinero </Link>
         <Link href="/dashboard/pay-services" className='bg-greenlime  py-3 text-lime-950 font-semibold rounded-md text-center'> Pagar Servicios  </Link>
         <Link href="/dashboard/get-money" className='bg-greenlime  py-3 text-lime-950 font-semibold rounded-md text-center'> Ingresar Dinero  </Link>
@@ -104,14 +104,14 @@ const DashboarPage = () => {
 
 
         <section>
-          <input onChange={onChangeInput} value={searchTerm} placeholder="Buscar por actividad " className='bg-gray-700 block w-full mx-auto mt-4 text-lime-500 p-2 outline-none rounded-md' />
+          <input onChange={onChangeInput} value={searchTerm} placeholder="Buscar por actividad " className='bg-slate-800 block w-full mx-auto mt-4 text-lime-500 p-2 outline-none rounded-md' />
 
           <div className='text-white'>
             <h4 className='font-bold my-2'> Tu actividad </h4>
 
             {loading ? <Skeleton variant="rect" width={"100%"} height={260} animation="wave" baseColor="#111827" highlightColor="#374151" /> :
               (
-                <section className='w-full h-[260px] rounded-md p-2 flex flex-col gap-4 overflow-hidden overflow-y-scroll'>
+                <section className='w-full h-[200px] md:h-[260px] rounded-md p-2 flex flex-col gap-4 overflow-hidden overflow-y-scroll'>
 
 
                   {top10RecentElements.length > 0 ? (
@@ -121,11 +121,11 @@ const DashboarPage = () => {
                         <div className='flex flex-row items-center gap-x-2'>
                           <div className={
                             `${movimiento.type === TransactionType.DEPOSIT_COMPLETED || movimiento.type === TransactionType.PAYMENT_RECEIVED || movimiento.type === TransactionType.TRANSFER_RECEIVED ? "bg-lime-500" : "bg-red-500"} rounded-full h-2 w-2`} />
-                          <h4>{movimiento.details}</h4>
+                          <h4 className='text-xs md:text-base'>{movimiento.details}</h4>
                         </div>
                         <div className='flex flex-col'>
-                          <h4>{movimiento?.type === TransactionType.PAYMENT_SENT || movimiento?.type === TransactionType.TRANSFER_SENT ? `-$ ${formatCurrency(movimiento?.amount)}` : `+$ ${formatCurrency(movimiento?.amount)}`}</h4>
-                          <p> {formatDate(movimiento.date)} </p>
+                          <h4 className='text-xs'>{movimiento?.type === TransactionType.PAYMENT_SENT || movimiento?.type === TransactionType.TRANSFER_SENT ? `- $ ${formatCurrency(movimiento?.amount)}` : `+ $ ${formatCurrency(movimiento?.amount)}`}</h4>
+                          <p className='text-[10px] md:text-sm text-center'> {formatDate(movimiento.date)} </p>
                         </div>
 
                       </article>
@@ -142,7 +142,7 @@ const DashboarPage = () => {
 
 
           </div>
-          <Link href="/dashboard/activity" className='text-sm block w-[100%] mx-auto mt-4 text-end text-blue-400'> Ver toda la actividad </Link>
+          <Link href="/dashboard/activity" className='text-sm block w-[100%] mx-auto py-2 text-end text-blue-400'> Ver toda la actividad </Link>
         </section>
 
       </section>
