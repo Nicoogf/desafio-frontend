@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import Logo from "../../public/logo-off.png"
@@ -9,8 +10,8 @@ export default function Home() {
     <nav className="absolute top-0 bg-greenlime text-slate-800 w-full p-2 flex flex-row items-center justify-between">
      <Image src={Logo} alt= "Logo Digital Money App" className="w-14 ml-4"/> 
       <div className="flex flex-row gap-x-2">
-        <Link className="bg-gray-950 text-greenlime px-3 py-2 rounded-md font-semibold w-[120px] text-center text-xs md:text-sm border border-transparent hover:text-gray-950 hover:bg-slate-300 hover:border-slate-900 transition-all duration-100" href="/login  "> Ingresar </Link>
-        <Link className="bg-gray-950 text-greenlime px-3 py-2 rounded-md font-semibold w-[120px] text-center text-xs md:text-sm border border-transparent hover:text-gray-950 hover:bg-slate-300 hover:border-slate-900 transition-all duration-100" href="/register"> Crear Cuenta  </Link>
+        <Link className="bg-gray-950 text-greenlime px-3 py-2 rounded-md font-semibold w-[120px] text-center text-xs md:text-sm border border-transparent hover:text-gray-950 hover:bg-slate-300 hover:border-slate-900 transition-all duration-100" href="/login" id="loginButton"> Ingresar </Link>
+        <Link className="bg-gray-950 text-greenlime px-3 py-2 rounded-md font-semibold w-[120px] text-center text-xs md:text-sm border border-transparent hover:text-gray-950 hover:bg-slate-300 hover:border-slate-900 transition-all duration-100" href="/register" id="registerButton"> Crear Cuenta  </Link>
       </div>
     </nav>
 

@@ -30,17 +30,14 @@ export async function middleware(request) {
   const token = request.cookies.get("token")
 
   if (request.nextUrl.pathname.includes("/dashboard") ) {
-    if( token === undefined){
-      console.log("No hay token fue redireccionado al loguin")
+    if( token === undefined){     
       return NextResponse.redirect(new URL("/login", request.url))
     }
     
     try {      
       const { payload } = await jwtVerify(token.value , new TextEncoder().encode(TOKEN_SECRET))
-      console.log("Viene de middleware.js" , payload)
       return NextResponse.next()
-    } catch (error) {
-      console.log(error)
+    } catch (error) {   
       return NextResponse.redirect(new URL("/login", request.url))
     }
   }

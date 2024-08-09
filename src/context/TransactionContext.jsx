@@ -1,7 +1,7 @@
 'use client'
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getMovesRequest } from "@/axios/Moves"
-import { depositMoneyRequest, getBusinessRequest, payServicesRequest, sendMoneyRequest } from "../axios/transferences"
+import { depositMoneyRequest, getBusinessRequest, payServicesRequest, sendMoneyRequest, transferenceMoneyRequest } from "../axios/transferences"
 import { createContext, useContext, useState } from "react"
 import { useRouter } from "next/navigation"
 
@@ -22,6 +22,8 @@ export function TransactionProvider({ children }) {
     const [business, setBussines] = useState([])
     const [transactionDetails, setTransactionDetails] = useState(null);
     const [errorsTransaction, setErrorsTransaction] = useState([]);
+    const [errorAlias, setErrorAlias] = useState([]);
+    const [ destinatary , setDestinatary] = useState({name:"",lastname:"",email:"",alias:""})
 
 
 
@@ -86,8 +88,22 @@ export function TransactionProvider({ children }) {
         }
     }
 
+    const transferenceMoney = async(alias) => {
+        console.log(alias)
+        try {
+            const res = await transferenceMoneyRequest(alias)
+            setDestinatary(res.data)
+            console.log("valor de res" , res)
+        } catch (error) {
+            console.log(error)
+            setErrorAlias(error.response.data)
+        }
+    }
+
+ 
+
     return (
-        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business, sendMoney, errorsTransaction, transactionDetails, VerifyUser, getBusiness, payServices }}>
+        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business, sendMoney, errorsTransaction, transactionDetails, VerifyUser, getBusiness, payServices ,transferenceMoney, destinatary ,errorAlias ,setDestinatary,setErrorAlias}}>
             {children}
         </TransactionContext.Provider>
     )

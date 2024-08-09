@@ -11,6 +11,8 @@ export const getBusinessRequest = () => axios.get("/services")
 //Pago de Servicios
 export const payServicesRequest = (service_id, data) => axios.post(`/services/${service_id}` , data )
 
+export const transferenceMoneyRequest = (alias) => axios.post(`/serchuser` , {alias})
+
 
 
 

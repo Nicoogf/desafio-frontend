@@ -34,6 +34,7 @@ export const AuthProvider = ({ children }) => {
             setUser(res.data)
             setIsAuthenticated(true)
             setError([])
+            router.push("/login")
             return res.data
         } catch (error) {
             console.log(error.response)
@@ -50,6 +51,7 @@ export const AuthProvider = ({ children }) => {
             setUser(res.data)
             setIsAuthenticated(true)
             setError([])
+            router.push("/dashboard")
         } catch (error) {            
             console.log(error.response)
             setIsAuthenticated(false)

@@ -10,7 +10,7 @@ export async function POST(request) {
     MongoDBConnection()
     try {
     const { email , password } = await request.json()
-    console.log(email)
+  
 
     if(!email || !password){
         return NextResponse.json(["Faltan ingresar credenciales"] , {status:400})
@@ -21,7 +21,7 @@ export async function POST(request) {
     
     const userFound = await User.findOne({email})
 
-    console.log(userFound.cbu)
+   
 
     if(!userFound){
         return NextResponse.json(["El usuario no se encuentra registrado"] , {status:400})
@@ -33,7 +33,7 @@ export async function POST(request) {
         return NextResponse.json(["La contraseña es invalida"] , {status : 400 })
     }
 
-    console.log(isMatch)
+
 
     const token = await createAccesToken({ id: userFound._id });
 
@@ -45,7 +45,7 @@ export async function POST(request) {
         path: '/'   
       }); 
 
-      console.log(userFound.cbu)
+   
 
       return NextResponse.json({
         id: userFound._id,

@@ -16,12 +16,12 @@ export async function POST(request) {
 
     const userSender = await User.findOne({ email });
     if (!userSender) {
-      return NextResponse.json({ message: "No hay cliente registrado" }, { status: 400 });
+      return NextResponse.json(["No hay cliente registrado" ], { status: 400 });
     }
 
     const userReceiver = await User.findOne({ alias });
     if (!userReceiver) {
-      return NextResponse.json({ message: "No se encontró destinatario" }, { status: 400 });
+      return NextResponse.json(["No se encontró destinatario" ], { status: 400 });
     }
 
     if (userSender.dinero < amount) {

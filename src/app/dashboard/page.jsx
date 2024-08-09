@@ -69,7 +69,7 @@ const DashboarPage = () => {
 
         <div className=' flex flex-row justify-end gap-x-4 mr-2  text-sm md:text-base mb-6'>
           <Link href="/dashboard/cards" className='text-xs'> Ver tarjetas </Link>
-          <button onClick={handleMenu} className='text-xs'> Ver CVU </button>
+          <button onClick={handleMenu} className='text-xs' id="viewCBU"> Ver CVU </button>
         </div>
 
         <div className="ml-1 -mt-3">
@@ -117,7 +117,7 @@ const DashboarPage = () => {
                   {top10RecentElements.length > 0 ? (
                     top10RecentElements.map(movimiento => (
 
-                      <article key={movimiento._id} className='flex flex-row justify-between items-center bg-gray-700 p-2 rounded-md'>
+                      <article key={movimiento._id} className='flex flex-row justify-between items-center bg-slate-800 p-2 rounded-md'>
                         <div className='flex flex-row items-center gap-x-2'>
                           <div className={
                             `${movimiento.type === TransactionType.DEPOSIT_COMPLETED || movimiento.type === TransactionType.PAYMENT_RECEIVED || movimiento.type === TransactionType.TRANSFER_RECEIVED ? "bg-lime-500" : "bg-red-500"} rounded-full h-2 w-2`} />

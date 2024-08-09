@@ -125,7 +125,6 @@ const Layout = ({ children }) => {
 
   const closeSesion = () => {
     logout()
-    router.push("/")
   }
 
   const formatDateProfile = (dateString) => {
@@ -138,7 +137,7 @@ const Layout = ({ children }) => {
   };
   
   return (
-    <main className='grid grid-cols-12 w-[100%] max-w-[1920px] mx-auto h-[calc(100vh-40px)] rounded-xl overflow-hidden bg-gray-900 relative z-50 overflow-y-auto pb-10'>
+    <main className='grid grid-cols-12 w-[100%] max-w-[1920px] mx-auto h-[calc(100vh-40px)] rounded-xl overflow-hidden bg-gray-900 relative z-50 overflow-y-auto pb-10' id="home-app">
 
       <nav className='bg-gray-950 w-full px-2 py-3 flex flex-row items-center justify-between mb-2 fixed lg:absolute z-[9999] top-0'>
         <Image src={Logo} className='w-14' alt="Logo de digital money app" />
@@ -162,7 +161,7 @@ const Layout = ({ children }) => {
         <Link href="/dashboard/pay-services" className='hover:font-semibold transition-all duration-300'> Pagar Servicio </Link>
         <Link href="/dashboard/cards" className='hover:font-semibold transition-all duration-300'> Tarjetas </Link>
         <Link href="/dashboard/profile" className='mb-8 hover:font-semibold transition-all duration-300'> Perfil </Link>
-        <Link href="/" onClick={closeSesion} className='hover:font-semibold transition-all duration-300'> Cerrar Sesion </Link>
+        <Link href="/" onClick={closeSesion} className='hover:font-semibold transition-all duration-300' id="closeSeccionNav"> Cerrar Sesion </Link>
       </nav>
       <div className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-7 2xl:col-span-8 mt-10 bg-gray-900 xl:pt-10">
         {children}

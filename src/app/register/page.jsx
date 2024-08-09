@@ -19,7 +19,7 @@ const RegisterPage = () => {
   const OnSubmit = handleSubmit(async (values) => {
     console.log(values)
     signUp(values)
-    router.push("/login")
+    // router.push("/login")
   });
 
   const  validationErrors = [
@@ -38,11 +38,7 @@ const RegisterPage = () => {
 
   return (
     <main className='relative z-50  text-white w-full bg-gray-900 h-[calc(100vh-40px)] max-w-[1920px] rounded-md flex flex-col items-center justify-center overflow-hidden'>      
-      
-      {RegisterErrors.map((error, i) => (
-        <div key={i} className='w-full absolute top-0 bg-red-700 text-center '> {error} </div>
-      ))}
-
+    
 
       {(validationErrors.length > 0 ) ? (
        <div className={`w-full absolute top-0 bg-slate-950 text-center transition-all duration-500 translate-y-0 py-4 border-2 border-red-800 rounded-t-md`}>
@@ -82,42 +78,42 @@ const RegisterPage = () => {
         {role === "Usuario" && (
           <>
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="name" type='text' placeholder='Nombre'
-              {...register("name", { required: true })}
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="name" type='text' placeholder='Nombre'
+              {...register("name", { required: true })} id="nameUserRegister"
             />
           
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="lastname" type='text' placeholder='Apellido'
-              {...register("lastname", { required: true })} />
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="lastname" type='text' placeholder='Apellido'
+              {...register("lastname", { required: true })} id="lastNameUserRegister"/>
          
 
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="dni" type='number' placeholder='Documento'
-              {...register("dni", { required: true })}
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="dni" type='number' placeholder='Documento'
+              {...register("dni", { required: true })} id="dniUserRegister"
             />
 
            
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="email" type='email' placeholder='Email'
-              {...register("email", { required: true })} />
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="email" type='email' placeholder='Email'
+              {...register("email", { required: true })} id="emailUserRegister"/>
 
            
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="phone" type='number' placeholder='Telefono'
-              {...register("phone", { required: true })}
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="phone" type='number' placeholder='Telefono'
+              {...register("phone", { required: true })}  id="phoneUserRegister"
             />
 
          
 
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="password" type='password' placeholder='Contraseña'
-              {...register("password", { required: true })} />
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="password" type='password' placeholder='Contraseña'
+              {...register("password", { required: true })} id="passwordUserRegister"/>
 
           
 
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="confirmPassword" type='password' placeholder='Confirmar Contraseña'
-              {...register("confirmPassword", { required: true })} />
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="confirmPassword" type='password' placeholder='Confirmar Contraseña'
+              {...register("confirmPassword", { required: true })} id="confirmPasswordUserRegister" />
 
            
           </>
@@ -125,7 +121,7 @@ const RegisterPage = () => {
 
         {role === "Empresa" && (
           <>
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="companyName" type='text' placeholder='Nombre de la Empresa'
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="companyName" type='text' placeholder='Nombre de la Empresa'
               {...register("companyName", { required: true })}
             />
 
@@ -142,38 +138,38 @@ const RegisterPage = () => {
             
 
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="cuit" type='number' placeholder='CUIT'
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="cuit" type='number' placeholder='CUIT'
               {...register("cuit", { required: true })}
             />
 
          
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="email" type='email' placeholder='Email'
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="email" type='email' placeholder='Email'
               {...register("email", { required: true })} />
 
        
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="phone" type='number' placeholder='Telefono'
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="phone" type='number' placeholder='Telefono'
               {...register("phone", { required: true })}
             />
 
       
 
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="password" type='password' placeholder='Contraseña'
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="password" type='password' placeholder='Contraseña'
               {...register("password", { required: true })} />
 
             
 
 
-            <input className='bg-slate-800 p-2 rounded-md outline-none' name="confirmPassword" type='password' placeholder='Confirmar Contraseña'
+            <input className='bg-slate-800 p-2 rounded-md outline-none text-greenlime font-semibold' name="confirmPassword" type='password' placeholder='Confirmar Contraseña'
               {...register("confirmPassword", { required: true })} />
 
           
           </>
         )}
 
-        <button className='bg-greenlime text-lime-950 p-2 rounded-md font-semibold border border-transparent transition-all duration-100 hover:border-gray-950 hover:bg-slate-300 hover:text-gray-900' type='submit'>
+        <button id="registerUserButton" className='bg-greenlime text-lime-950 p-2 rounded-md font-semibold border border-transparent transition-all duration-100 hover:border-gray-950 hover:bg-slate-300 hover:text-gray-900' type='submit'>
           Registrar
         </button>
         <p className='text-white text-sm'> ¿Ya tienes una cuenta?

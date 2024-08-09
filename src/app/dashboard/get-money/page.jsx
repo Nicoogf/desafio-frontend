@@ -24,15 +24,10 @@ const DepositPage = () => {
       return
     }
 
-    console.log(data)
-    const depositData = {
-      ...data,
-      email: user?.email
-    }
 
-    console.log(depositData)
 
-    depositMoney(user.id , depositData)
+
+    depositMoney(user.id, depositData)
     router.push("/dashboard/get-money/success")
   })
 
@@ -49,17 +44,17 @@ const DepositPage = () => {
 
         <div className='flex flex-row items-center justify-center'>
           <p className='text-greenlime mr-4 '> $ </p>
-        <input name="amount" type="number" className='p-2 bg-gray-950 rounded-md text-greenlime text-center text-xl font-semibold placeholder:text-sm my-4' placeholder="Ingresar Monto"
-          {...register("amount", { required: true })}  />
+          <input name="amount" type="number" className='p-2 bg-gray-950 rounded-md text-greenlime text-center text-xl font-semibold placeholder:text-sm my-4' placeholder="Ingresar Monto"
+            {...register("amount", { required: true })} />
         </div>
-       
+
 
 
         <div class="flex flex-col space-y-2">
           <label for="card" class="text-greenlime font-semibold">Tarjetas Registradas</label>
           <div class="space-y-1">
             {cards.length < 1 ? (
-              <h6 className='text-white'> Cargando tarjetas ...</h6>
+              <h6 className='text-white'>No tienes tarjetas Registradas</h6>
             ) : (
               cards.map((card, i) => (
                 <label key={i} class="flex items-center justify-between bg-slate-800 p-3 rounded-md">
@@ -75,11 +70,11 @@ const DepositPage = () => {
 
         {cards.length < 1 ? (
           <Link className='text-lime-950 p-2 bg-greenlime rounded-md' href="/dashboard">
-          Volver al Dashboard
+            Volver al Dashboard
           </Link>
         ) : (
           <button className='bg-greenlime text-lime-950 p-2 rounded-md font-semibold'> Depositar </button>
-          )}
+        )}
 
       </form>
     </section>
