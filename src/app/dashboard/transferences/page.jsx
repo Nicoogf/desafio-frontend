@@ -54,7 +54,7 @@ const SendPage = () => {
 
 
     return (
-        <section className='relative  h-[calc(100vh-40px)] flex flex-col items-center justify-center text-white'>
+        <section className='relative  h-[calc(100vh-40px)] flex flex-col items-center  text-white'>
 
             {(errorsTransaction.length > 0) ? (
                 <div className={`w-[100%] max-w-[450px] mx-auto shadow-xl absolute top-0 bg-slate-950 text-center transition-all duration-500 translate-y-0 py-4 border-2 border-red-800 rounded-t-md`}>
@@ -81,24 +81,24 @@ const SendPage = () => {
                 </div>
             )}
 
-            <h3 className='text-2xl font-semibold'> Transferir Dinero </h3>
-            <form onSubmit={onSubmit} className='flex flex-col w-[80%] max-w-[720px] mx-auto p-2 gap-y-2 text-black '>
-                <input name="alias" type="text" placeholder='Ingresar destinatario' className='p-2 bg-slate-800 text-greenlime font-semibold'
+            <h3 className='text-2xl font-semibold mt-14 mb-6'> Transferir Dinero </h3>
+            <form onSubmit={onSubmit} className='flex flex-col w-[80%] max-w-[450px] mx-auto p-2 gap-y-2 text-black '>
+                <input name="alias" type="text" placeholder='Ingresar destinatario' className='p-2 bg-slate-800 text-greenlime font-semibold rounded-lg'
                     {...register("alias", { required: true })} onChange={AliasOnChange}/>
 
                 <input name="amount" type="number" className='p-2 bg-slate-800 rounded-md text-greenlime font-semibold' placeholder="Ingresar Monto"
                     {...register("amount", { required: true })} onChange={AmountOnChange}/>
 
-                <button className='bg-greenlime text-lime-950 p-2 '> Enviar </button>
+                <button className='bg-greenlime text-lime-950 p-2 rounded-lg font-semibold'> Enviar </button>
             </form>
 
-            <section className='flex flex-col gap-y-2 mt-10'> 
+            <section className='flex flex-col gap-y-2 mt-10 max-w-[450px] mx-auto'> 
                 <h4 className='text-sm text-center'> Alias Ingresado </h4>
                 <h4 className='text-lg font-semibold text-center'> {alias} </h4>
                 <h4 className='text-sm text-center'> Cantidad de Dinero a Transferir </h4>
-                <h4 className='text-lg font-semibold text-center'> {amountTransaction} </h4>
+                <h4 className='text-lg font-semibold text-center bg-slate-800 h-10 w-full flex items-center justify-center border border-gray-600 rounded-lg'> $ {amountTransaction} </h4>
                 <h4 className='text-sm text-center'>  Destinatario </h4>
-                <h4 className='text-lg font-semibold text-center'> 
+                <h4 className='text-lg font-semibold text-center bg-slate-800 h-10 w-full flex items-center justify-center border border-gray-600 rounded-lg'> 
                     {destinatary?.name} {destinatary?.lastname}
                 </h4>
             </section>

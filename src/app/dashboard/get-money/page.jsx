@@ -24,6 +24,10 @@ const DepositPage = () => {
       return
     }
 
+    const depositData = {
+      ...data,
+      email: user?.email
+    }
 
 
 
@@ -69,7 +73,7 @@ const DepositPage = () => {
         </div>
 
         {cards.length < 1 ? (
-          <Link className='text-lime-950 p-2 bg-greenlime rounded-md' href="/dashboard">
+          <Link className='text-lime-950 p-2 bg-greenlime rounded-md text-center font-semibold' href="/dashboard">
             Volver al Dashboard
           </Link>
         ) : (

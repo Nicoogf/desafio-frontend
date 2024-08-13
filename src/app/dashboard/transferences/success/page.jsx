@@ -31,18 +31,18 @@ const onSubmit = handleSubmit((data) => {
 console.log(transactionDetails)
 
   return (
-    <section className='flex flex-col items-center justify-center h-[100%]'>
+    <section className='flex flex-col items-center justify-center h-[100%] text-white'>
       {transactionDetails ? (
         <>
-          <h2>Transferencia exitosa</h2>
-          <FaRegCheckCircle />
+          <h2 className='text-3xl text-greenlime my-1'>Transferencia exitosa</h2>
+          <FaRegCheckCircle className='text-greenlime text-6xl my-1'/>
           <p>De: {transactionDetails?.sender} </p>
           <p>A: {transactionDetails?.reciber} </p>
           <p>Monto: $ {transactionDetails?.amount}</p>
           <p>Fecha: {new Date().toLocaleString()}</p>
-          <div>
-            <a href={transactionDetails?.pdfUrl} download="transaction.pdf" className='bg-blue-500 p-2 rounded-md'>Descargar comprobante</a>
-            <a href="/dashboard">Ir a inicio</a>
+          <div className='mt-4 flex flex-col items-center gap-4 '>
+            <a href={transactionDetails?.pdfUrl} download="transaction.pdf" className='bg-greenlime p-2 rounded-md text-lime-950'>Descargar comprobante</a>
+            <a href="/dashboard" className='text-blue-400'>Ir a inicio</a>
           </div>
          
         </>

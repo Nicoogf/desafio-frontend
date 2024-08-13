@@ -7,6 +7,7 @@ import { MdOutlineError } from "react-icons/md";
 import { useAuth } from '@/context/AuthContext'
 import { useTransaction } from '@/context/TransactionContext';
 import { lastFourNumbers } from '@/utils/funcionalidades';
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 
 const DepositSuccesPage = () => {
@@ -48,8 +49,8 @@ console.log(transactionDetails)
         </>
       ) : (
         <section className='flex flex-col items-center justify-center'>
-        <MdOutlineError className='text-greenlime text-9xl'/>
-        <h2 className='text-2xl'> Algo salio mal </h2>
+        <AiOutlineLoading3Quarters className='text-greenlime text-9xl'/>
+        <h2 className='text-2xl'> Procesando depósito  </h2>
         <a href="/dashboard" className='p-2 bg-greenlime rounded-md text-lime-950 mt-10'>Ir a inicio</a>
         </section>
       )}

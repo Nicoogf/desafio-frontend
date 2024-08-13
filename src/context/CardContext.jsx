@@ -3,6 +3,7 @@
 import React from 'react';
 import { createContext, useContext, useState } from 'react';
 import { createCardRequest, getCardsRequest ,deleteCardRequest} from '@/axios/Cards';
+import { useRouter } from 'next/navigation';
 
 const CardContext = createContext();
 
@@ -17,11 +18,13 @@ export const useCard = () => {
 export function CardProvider({ children }) {
     const [cards, setCard] = useState([]);
     const [errors, setError] = useState([]);
-
+    const router= useRouter()
+    
     const createCard = async (id, card) => {
         try {
             const res = await createCardRequest(id, card);
             console.log("el res data del context : ", res);
+            router.push("/dashboard/cards")
         } catch (error) {
             console.log(error.message);
             setError(error.response.data);

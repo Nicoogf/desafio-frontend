@@ -154,7 +154,7 @@ const Layout = ({ children }) => {
             )}
           </Link>
       </nav>
-      <nav className='hidden col-span-0 md:flex md:flex-col md:col-span-4 lg:col-span-3 xl:col-span-2 bg-greenlime gap-y-2 p-10 mt-14 text-lime-950'>
+      <nav className='hidden col-span-0 md:flex md:flex-col md:col-span-4 lg:col-span-3 xl:col-span-2 bg-greenlime gap-y-2 p-10 md:mt-14 lg:pt-24 text-lime-950 relative -top-4 h-full'>
         <Link href="/dashboard" className='hover:font-semibold transition-all duration-300'> Inicio </Link>
         <Link href="/dashboard/activity" className='hover:font-semibold transition-all duration-300'> Actividad </Link>
         <Link href="/dashboard/get-money" className='hover:font-semibold transition-all duration-300'> Cargar Dinero </Link>
@@ -163,7 +163,7 @@ const Layout = ({ children }) => {
         <Link href="/dashboard/profile" className='mb-8 hover:font-semibold transition-all duration-300'> Perfil </Link>
         <Link href="/" onClick={closeSesion} className='hover:font-semibold transition-all duration-300' id="closeSeccionNav"> Cerrar Sesion </Link>
       </nav>
-      <div className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-7 2xl:col-span-8 mt-10 bg-gray-900 xl:pt-10">
+      <div className="col-span-12 md:col-span-8 lg:col-span-9 xl:col-span-7 2xl:col-span-8 mt-10 bg-gray-900 xl:pt-10 relative">
         {children}
       </div>
       <aside className='bg-gray-900 hidden xl:flex xl:col-span-3 mt-14 2xl:col-span-2 border-l border-gray-700 text-white xl:flex-col xl:items-center xl:justify-start'>
@@ -181,7 +181,7 @@ const Layout = ({ children }) => {
           <h4 className='my-2 cursor-pointer text-greenlime'> {user?.alias } </h4>         
         </CopyToClipboard>
       </aside>
-      <footer className='bg-gray-950 fixed lg:absolute bottom-0 w-full p-2 hidden md:block text-lime-500'>
+      <footer className='bg-gray-950 fixed bottom-0 lg:absolute w-full p-2 hidden md:block text-lime-500'>
         Digital Money App 2024
       </footer>
       <Navbar />

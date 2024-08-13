@@ -2,6 +2,7 @@ import Movement from "@/models/Movement";
 import User from "@/models/User";
 import { TransactionType } from "@/utils/enum";
 import { MongoDBConnection } from "@/utils/mongodb";
+import Card from "@/models/Card";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 

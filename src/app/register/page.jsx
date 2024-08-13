@@ -2,7 +2,7 @@
 import { useAuth } from '@/context/AuthContext';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 
 const RegisterPage = () => {
@@ -22,45 +22,55 @@ const RegisterPage = () => {
     // router.push("/login")
   });
 
-  const  validationErrors = [
-    ...RegisterErrors,
-    errors.name && "El nombre es requerido",
-    errors.lastname && "El apellido es requerido",
-    errors.dni && "El DNI es requerido",
-    errors.email && "El email es requerido",
-    errors.phone && "El teléfono es requerido",
-    errors.password && "La contraseña es requerida",
-    errors.confirmPassword && "La confirmación de la contraseña es requerida",
-    errors.companyName && "El nombre de la empresa es requerido",
-    errors.businessField && "El área de negocio es requerida",
-    errors.cuit && "El CUIT es requerido"
-  ].filter(Boolean);
+  // const  validationErrors = [
+  //   ...RegisterErrors,
+  //   errors.name && "El nombre es requerido",
+  //   errors.lastname && "El apellido es requerido",
+  //   errors.dni && "El DNI es requerido",
+  //   errors.email && "El email es requerido",
+  //   errors.phone && "El teléfono es requerido",
+  //   errors.password && "La contraseña es requerida",
+  //   errors.confirmPassword && "La confirmación de la contraseña es requerida",
+  //   errors.companyName && "El nombre de la empresa es requerido",
+  //   errors.businessField && "El área de negocio es requerida",
+  //   errors.cuit && "El CUIT es requerido"
+  // ].filter(Boolean);
+
+  useEffect(() => {
+    if (RegisterErrors.length > 0) {
+      const timer = setTimeout(() => {
+        setError([])
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [RegisterErrors, setError])
+
 
   return (
     <main className='relative z-50  text-white w-full bg-gray-900 h-[calc(100vh-40px)] max-w-[1920px] rounded-md flex flex-col items-center justify-center overflow-hidden'>      
     
 
-      {(validationErrors.length > 0 ) ? (
-       <div className={`w-full absolute top-0 bg-slate-950 text-center transition-all duration-500 translate-y-0 py-4 border-2 border-red-800 rounded-t-md`}>
-        
-        <h4 className='font-semibold border-b-2 border-slate-700 pb-2 w-[80%] mx-auto'> No pudiste crear el usuario por los siguientes motivos </h4>
-       
-       
-        <ul className='list-disc list-inside text-sm pt-2'>
-          {validationErrors.map((error, i) => (
-            <li key={i} className='text-red-400'>{error}</li>
-          ))}
-        </ul>
-      </div>
+    {(RegisterErrors.length > 0) ? (
+        <div className={`w-[100%] max-w-[450px] shadow-xl absolute top-0 bg-slate-950 text-center transition-all duration-500 translate-y-0 py-4 border-2 border-red-800 rounded-t-md text-white`}>
+
+          <h4 className='font-semibold border-b-2 border-slate-700 pb-2 w-[80%] mx-auto'> No pudiste ingresar a la aplicacion por los siguientes motivos </h4>
+
+
+          <ul className='list-disc list-inside text-sm pt-2'>
+            {RegisterErrors.map((error, i) => (
+              <li key={i} className='text-red-400'>{error}</li>
+            ))}
+          </ul>
+        </div>
       ) : (
-        <div className={`w-full absolute top-0 bg-red-700 text-center transition-all duration-500 -translate-y-48`}>
-        <ul className='list-disc list-inside'>
-          {validationErrors.map((error, i) => (
-            <li key={i} className='text-white'>{error}</li>
-          ))}
-        </ul>
-      </div>
-      ) }
+        <div className={`w-[100%] max-w-[450px] shadow-xl absolute top-0 bg-red-700 text-center transition-all duration-500 -translate-y-48 text-white`}>
+          <ul className='list-disc list-inside'>
+            {RegisterErrors.map((error, i) => (
+              <li key={i} className='text-white'>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <h1 className='text-lg font-semibold text-center my-2'> Crea una nueva cuenta </h1>
 

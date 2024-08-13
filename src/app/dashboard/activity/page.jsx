@@ -214,7 +214,7 @@ const MovementsPage = () => {
 
                             {expandedId === movimiento._id && (
                                 <div>
-                                    <h4>Pago Exitoso</h4>
+                                    <h4>{movimiento?.type}</h4>
                                     <h4>Numero de operacion: {movimiento._id}</h4>
                                 </div>
                             )}

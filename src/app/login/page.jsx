@@ -2,7 +2,7 @@
 import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 const LoguinPage = () => {
@@ -12,9 +12,9 @@ const LoguinPage = () => {
   const router = useRouter()
 
 
+
   const setPassword = (e) => {
     e.preventDefault()
-    console.log(mailValidate)
     setMailValidate(!mailValidate)
   }
 
@@ -23,23 +23,33 @@ const LoguinPage = () => {
     router.push("/dashboard")
   })
 
-  const validationErrors = [
-    ...LoguinErrors,
-    errors.email && "El email es requerido",  
-    errors.password && "La contraseña es requerida"
-  ].filter(Boolean);
+  // const validationErrors = [
+  //   ...LoguinErrors,
+  //   errors.email && "El email es requerido",  
+  //   errors.password && "La contraseña es requerida"
+  // ].filter(Boolean);
+
+  useEffect(() => {
+    if (LoguinErrors.length > 0) {
+      const timer = setTimeout(() => {
+        setError([])
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [LoguinErrors, setError])
+
 
   return (
     <main className='relative z-50 w-full bg-gray-900 h-[calc(100vh-40px)] max-w-[1920px] rounded-md flex items-center justify-center'>
 
-      {(validationErrors.length > 0) ? (
+      {(LoguinErrors.length > 0) ? (
         <div className={`w-[100%] max-w-[450px] shadow-xl absolute top-0 bg-slate-950 text-center transition-all duration-500 translate-y-0 py-4 border-2 border-red-800 rounded-t-md text-white`}>
 
           <h4 className='font-semibold border-b-2 border-slate-700 pb-2 w-[80%] mx-auto'> No pudiste ingresar a la aplicacion por los siguientes motivos </h4>
 
 
           <ul className='list-disc list-inside text-sm pt-2'>
-            {validationErrors.map((error, i) => (
+            {LoguinErrors.map((error, i) => (
               <li key={i} className='text-red-400'>{error}</li>
             ))}
           </ul>
@@ -47,7 +57,7 @@ const LoguinPage = () => {
       ) : (
         <div className={`w-[100%] max-w-[450px] shadow-xl absolute top-0 bg-red-700 text-center transition-all duration-500 -translate-y-48 text-white`}>
           <ul className='list-disc list-inside'>
-            {validationErrors.map((error, i) => (
+            {LoguinErrors.map((error, i) => (
               <li key={i} className='text-white'>{error}</li>
             ))}
           </ul>
@@ -91,7 +101,6 @@ const LoguinPage = () => {
           <p className=' text-white text-xs'>¿ No tienes cuenta ?
             <Link href="/register" className='text-blue-400'> Ingresa aca </Link>
           </p>
-          <Link className='text-blue-400 text-xs' href="/forget-password"> ¿Olvidaste tu Contraseña ? </Link>
         </div>
 
 

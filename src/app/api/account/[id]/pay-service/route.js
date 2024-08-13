@@ -67,7 +67,7 @@ export async function POST(request) {
         });
         await paymentMovement.save();
 
-        console.log(paymentMovement.details);
+        console.log("El movimiento se guardo");
 
         return NextResponse.json({ message: "Pago exitoso" }, { status: 200 });
 

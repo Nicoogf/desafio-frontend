@@ -105,6 +105,9 @@ export const AuthProvider = ({ children }) => {
         CheckLogin()
     }, []);
 
+
+ 
+
     return (
         <AuthContext.Provider value={{ signUp, errors, setError, signIn, user ,isAuthenticated , editUser,logout,loading}}>
             {children}

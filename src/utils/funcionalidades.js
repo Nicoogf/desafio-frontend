@@ -132,5 +132,19 @@ export function generateRandomPrice() {
   return parseFloat(roundedNum);
 }
 
+export function isCardExpired(expirationDate) {
+  // Dividir la fecha en mes y año
+  const expMonth = parseInt(expirationDate.slice(0, 2), 10);
+  const expYear = parseInt(expirationDate.slice(2, 4), 10);
 
+  // Obtener el año y mes actuales
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1; // Los meses en JavaScript son de 0-11, por eso se suma 1
+  const currentYear = currentDate.getFullYear() % 100; // Obtener los últimos dos dígitos del año
 
+  // Comparar el año y mes de la tarjeta con el actual
+  if (expYear < currentYear || (expYear === currentYear && expMonth < currentMonth)) {
+      return true; // La tarjeta está vencida
+  }
+  return false; // La tarjeta no está vencida
+}

@@ -4,6 +4,7 @@ import { MongoDBConnection } from "@/utils/mongodb";
 import { NextResponse } from "next/server";
 import { jwtVerify } from "jose";
 import { TOKEN_SECRET } from "@/config/config";
+import { isCardExpired } from "@/utils/funcionalidades";
 
 
 //Listado de tarjetas
@@ -49,6 +50,10 @@ export async function POST(request ,{ params }) {
         const cardCount = await Card.countDocuments({ user: idUser });
         if (cardCount >= 10) {
             return NextResponse.json([ "No se pueden agregar más de 10 tarjetas" ], { status: 400 });
+        }
+
+        if( isCardExpired(vto) ){
+            return NextResponse.json(["La tarjeta esta vencida"],{status:400})
         }
   
         // Crear una nueva tarjeta utilizando el ID del usuario

@@ -66,49 +66,49 @@ const LoguinPage = () => {
 
     return (
         <>
-            <form className='w-full mt-10' onSubmit={onSubmit}>
-                <section className='w-[80%] mx-auto bg-gray-800 rounded-md p-4 mt-2 flex flex-col gap-2'>
-                    <h2>Tus datos</h2>
+            <form className='w-full mt-4 text-white max-w-[678px] mx-auto' onSubmit={onSubmit}>
+                <section className='w-[80%] mx-auto  rounded-md p-4 mt-2 flex flex-col gap-2'>
+                    <h2 className='text-xl font-semibold'>Tus datos</h2>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Email</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-black text-center' {...register("email")} />
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("email")} />
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Nombre</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-black text-center' {...register("name")} />
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("name")} />
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Apellido</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-black text-center' {...register("lastname")} />
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("lastname")} />
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>CUIT</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-black text-center' {...register("dni")}/>
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("dni")}/>
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Telefono</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-black text-center' {...register("phone")}/>
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("phone")}/>
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Contraseña</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-black text-center' placeholder={maskInput(user?.cbu || '')} readOnly {...register("newPassword")} />
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' placeholder={maskInput(user?.cbu || '')} readOnly {...register("newPassword")} value="******"/>
                     </div>
                 </section>
 
-                <h6 className='block w-[80%] mx-auto bg-lime-500 text-lime-950 font-semibold rounded-md p-4 mt-2 text-center'>
-                    Edita tu alias o cbu
+                <h6 className='block w-[80%] mx-auto text-whitefont-semibold  p-2 mt-2 text-center text-3xl'>
+                    Modifica tus Credenciales
                 </h6>
 
-                <section className='w-[80%] mx-auto bg-gray-800 rounded-md p-4 mt-2'>
+                <section className='w-[80%] mx-auto rounded-md p-2 mt-2 '>
                     <h3 className='font-semibold'>Desde aquí podrás editar los datos correspondientes a la transferencia de dinero</h3>
 
                     <article className='flex flex-row justify-between items-center my-4 cursor-pointer' onClick={() => toast.success("CBU copiado en el Portapapeles")}>
                         <div className='flex flex-col'>
-                            <h5 className='font-bold text-lime-500'>CVU</h5>
-                            <input placeholder= {user?.cbu || ''} className='text-center text-gray-400'  {...register("cbu")}/>
+                            <h5 className='font-bold text-greenlime'>CVU</h5>
+                            <input placeholder= {user?.cbu || ''} className='flex flex-row justify-between items-center gap-x-2 text-greenlime bg-slate-800 rounded-lg text-center p-2'  {...register("cbu")} />
                         </div>
                         <div>
-                            <FaRegEdit className='text-lime-500' />
+                            <FaRegEdit className='text-greenlime' />
                         </div>
                         
                     </article>
@@ -116,23 +116,22 @@ const LoguinPage = () => {
                    
                     <article className='flex flex-row justify-between items-center my-4'>
                         <div className='flex flex-col'>
-                            <h5 className='font-bold text-lime-500'>Alias</h5>
-                            <div className='flex flex-col gap-2'>
-                                <input placeholder={aliasUno} onChange={onChangeAlias} className='text-black text-center' name="aliasuno" maxLength={10} />
-                                <input placeholder={aliasDos} onChange={onChangeAlias} className='text-black text-center' name="aliasdos" maxLength={10} />
-                                <input placeholder={aliasTres} onChange={onChangeAlias} className='text-black text-center' name="aliastres" maxLength={10} />
+                            <h5 className='font-bold text-greenlime'>Alias</h5>
+                            <div className='flex flex-col xl:flex-row gap-2'>
+                                <input placeholder={aliasUno} onChange={onChangeAlias} className='flex flex-row justify-between items-center gap-x-2 text-greenlime bg-slate-800 rounded-lg text-center p-2' name="aliasuno" maxLength={10} />
+                                <input placeholder={aliasDos} onChange={onChangeAlias} className='flex flex-row justify-between items-center gap-x-2 text-greenlime bg-slate-800 rounded-lg text-center p-2' name="aliasdos" maxLength={10} />
+                                <input placeholder={aliasTres} onChange={onChangeAlias} className='flex flex-row justify-between items-center gap-x-2 text-greenlime bg-slate-800 rounded-lg text-center p-2' name="aliastres" maxLength={10} />
                             </div>
                         </div>
 
 
                         <div>
-                            <FaRegEdit className='text-lime-500' />
+                            <FaRegEdit className='text-greenlime ml-4' />
                         </div>
                     </article>
 
                     <article className='flex flex-col justify-center items-center'>
                         <h3>Su identificaciones pasaran a ser ser</h3>
-                        <h6> { user?.cbu } </h6>
                         <h6>{`${aliasUno}.${aliasDos}.${aliasTres}`}</h6>
                     </article>
                 </section>

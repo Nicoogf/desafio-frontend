@@ -18,13 +18,13 @@ const Navbar = () => {
         <GoHomeFill className='text-2xl'/>      
         </Link>
 
-        <Link href="/dashboard/movements" className=' text-white font-semibold  text-xs w-[100px] flex flex-col items-center justify-center text-center gap-y-1'> 
+        <Link href="/dashboard/activity" className=' text-white font-semibold  text-xs w-[100px] flex flex-col items-center justify-center text-center gap-y-1'> 
         <BsGraphDownArrow className='text-2xl'/> 
 
         
         </Link>
 
-        <Link href="/dashboard/send" className='bg-transparent text-white font-semibold  text-xs w-[100px] flex items-center text-center justify-center'> 
+        <Link href="/dashboard/transferences" className='bg-transparent text-white font-semibold  text-xs w-[100px] flex items-center text-center justify-center'> 
         <Image src= {Logo} alt="Boton de transferencias" className='bg-greenlime rounded-full w-12 h-12 object-contain p-1'/>
          </Link>
 
