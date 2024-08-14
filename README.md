@@ -6,7 +6,7 @@
 
 Digital Money House es una aplicación web en desarrollo que busca ofrecer una solución simple e intuitiva para la gestión de finanzas personales. En esta primera fase, el proyecto se enfoca en las funcionalidades básicas de una billetera virtual, como registro, inicio de sesión, gestión de pagos y seguimiento de transacciones.
 
-## Descripción general
+## Datos importantes
 Antes de comenzar a utilizar la aplicación, es importante tener en cuenta lo siguiente:
 
 * **Saldo inicial de usuario:** Al crear un nuevo usuario, este no tendrá dinero en su cuenta. Para cargar dinero, el usuario debe agregar una tarjeta de crédito o débito. Cada tarjeta agregada tendrá un saldo inicial de $500,000 para verificar el correcto funcionamiento del flujo de la aplicación.
