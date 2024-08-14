@@ -14,7 +14,7 @@ const DepositPage = () => {
   const { user } = useAuth()
   const { handleSubmit, register } = useForm()
   const { cards, getCards } = useCard()
-  const { depositMoney } = useTransaction()
+  const { depositMoney, setErrorsTransaction, errorsTransaction } = useTransaction()
   const router = useRouter()
 
 
@@ -28,21 +28,47 @@ const DepositPage = () => {
       ...data,
       email: user?.email
     }
-
-
-
     depositMoney(user.id, depositData)
-    router.push("/dashboard/get-money/success")
   })
 
   useEffect(() => {
     getCards(user?.id)
   }, [user])
 
+  useEffect(() => {
+    if (errorsTransaction.length > 0) {
+      const timer = setTimeout(() => {
+        setErrorsTransaction([])
+      }, 5000)
+      return () => clearTimeout(timer)
+    }
+  }, [errorsTransaction, setErrorsTransaction])
 
-  console.log(cards)
+
   return (
     <section className='h-[100%] flex items-center flex-col bg-gray-900 text-white'>
+
+      {(errorsTransaction.length > 0) ? (
+        <div className={`w-[100%] max-w-[450px] shadow-xl absolute top-0 bg-slate-950 text-center transition-all duration-500 translate-y-0 py-4 border-2 border-red-800 rounded-t-md text-white`}>
+
+          <h4 className='font-semibold border-b-2 border-slate-700 pb-2 w-[80%] mx-auto'> No pudiste ingresar a la aplicacion por los siguientes motivos </h4>
+
+
+          <ul className='list-disc list-inside text-sm pt-2'>
+            {errorsTransaction.map((error, i) => (
+              <li key={i} className='text-red-400'>{error}</li>
+            ))}
+          </ul>
+        </div>
+      ) : (
+        <div className={`w-[100%] max-w-[450px] shadow-xl absolute top-0 bg-red-700 text-center transition-all duration-500 -translate-y-48 text-white`}>
+          <ul className='list-disc list-inside'>
+            {errorsTransaction.map((error, i) => (
+              <li key={i} className='text-white'>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       <h3 className='my-6 text-white font-semibold text-2xl'> Ingresa dinero a tu cuenta  </h3>
       <form onSubmit={onSubmit} className='bg-gray-900 flex flex-col w-full sm:w-[80%] max-w-[720px] mx-auto p-4 gap-y-2 text-black h-[80%]'>
 
@@ -63,8 +89,11 @@ const DepositPage = () => {
               cards.map((card, i) => (
                 <label key={i} class="flex items-center justify-between bg-slate-800 p-3 rounded-md">
                   <span class="ml-2 text-gray-200">{card?.desc}</span>
-                  <span className='text-white'> $ {formatCurrency(card.mount)} </span>
-                  <input type="radio" id={`rol-${card.name}`} name="rol" value={card._id} classname="hidden-input" {...register("card", { required: true })} />
+                  <div className='flex flex-row gap-x-2'>
+                    <span className='text-white'> $ {formatCurrency(card.mount)} </span>
+                    <input type="radio" id={`rol-${card.name}`} name="rol" value={card._id} classname="hidden-input" {...register("card", { required: true })} />
+                  </div>
+
                 </label>
               ))
             )

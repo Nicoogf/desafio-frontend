@@ -66,41 +66,38 @@ const LoguinPage = () => {
 
     return (
         <>
-            <form className='w-full mt-4 text-white max-w-[678px] mx-auto' onSubmit={onSubmit}>
-                <section className='w-[80%] mx-auto  rounded-md p-4 mt-2 flex flex-col gap-2'>
+            <form className='w-full mt-2 text-white max-w-[864px] mx-auto h-[100%] overflow-hidden' onSubmit={onSubmit}>
+                <section className='w-[80%] mx-auto  rounded-md p-4 mt-1 flex flex-col gap-2'>
                     <h2 className='text-xl font-semibold'>Tus datos</h2>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Email</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("email")} />
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-1' {...register("email")} />
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Nombre</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("name")} />
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-1' {...register("name")} />
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Apellido</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("lastname")} />
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-1' {...register("lastname")} />
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>CUIT</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("dni")}/>
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-1' {...register("dni")}/>
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Telefono</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' {...register("phone")}/>
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-1' {...register("phone")}/>
                     </div>
                     <div className='flex flex-row justify-between items-center'>
                         <h6 className='text-sm w-[35%]'>Contraseña</h6>
-                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-2' placeholder={maskInput(user?.cbu || '')} readOnly {...register("newPassword")} value="******"/>
+                        <input className='flex flex-row justify-between items-center gap-x-2 w-[65%] text-greenlime bg-slate-800 rounded-lg text-center p-1' placeholder={maskInput(user?.cbu || '')} readOnly {...register("newPassword")} value="******"/>
                     </div>
                 </section>
 
-                <h6 className='block w-[80%] mx-auto text-whitefont-semibold  p-2 mt-2 text-center text-3xl'>
-                    Modifica tus Credenciales
-                </h6>
-
+    
                 <section className='w-[80%] mx-auto rounded-md p-2 mt-2 '>
-                    <h3 className='font-semibold'>Desde aquí podrás editar los datos correspondientes a la transferencia de dinero</h3>
+                    <h3 className='font-semibold text-sm'>Desde aquí podrás editar los datos correspondientes a la transferencia de dinero</h3>
 
                     <article className='flex flex-row justify-between items-center my-4 cursor-pointer' onClick={() => toast.success("CBU copiado en el Portapapeles")}>
                         <div className='flex flex-col'>
@@ -117,7 +114,7 @@ const LoguinPage = () => {
                     <article className='flex flex-row justify-between items-center my-4'>
                         <div className='flex flex-col'>
                             <h5 className='font-bold text-greenlime'>Alias</h5>
-                            <div className='flex flex-col xl:flex-row gap-2'>
+                            <div className='flex flex-col xl:flex-row gap-1 w-full'>
                                 <input placeholder={aliasUno} onChange={onChangeAlias} className='flex flex-row justify-between items-center gap-x-2 text-greenlime bg-slate-800 rounded-lg text-center p-2' name="aliasuno" maxLength={10} />
                                 <input placeholder={aliasDos} onChange={onChangeAlias} className='flex flex-row justify-between items-center gap-x-2 text-greenlime bg-slate-800 rounded-lg text-center p-2' name="aliasdos" maxLength={10} />
                                 <input placeholder={aliasTres} onChange={onChangeAlias} className='flex flex-row justify-between items-center gap-x-2 text-greenlime bg-slate-800 rounded-lg text-center p-2' name="aliastres" maxLength={10} />
@@ -131,12 +128,12 @@ const LoguinPage = () => {
                     </article>
 
                     <article className='flex flex-col justify-center items-center'>
-                        <h3>Su identificaciones pasaran a ser ser</h3>
+                        <h3>Su CVU pasaran a ser ser</h3>
                         <h6>{`${aliasUno}.${aliasDos}.${aliasTres}`}</h6>
                     </article>
                 </section>
 
-                <button type="submit" className='block w-[80%] mx-auto bg-greenlime text-lime-950 font-semibold rounded-md p-4 mt-2'>Guardar Cambios</button>
+                <button type="submit" className='block w-[80%] max-w-[350px] mx-auto bg-greenlime text-lime-950 font-semibold rounded-md p-3 mt-2'>Guardar Cambios</button>
             </form>
 
         </>

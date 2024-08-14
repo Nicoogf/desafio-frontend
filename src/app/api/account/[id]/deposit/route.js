@@ -93,17 +93,16 @@ export async function POST(request) {
     try {
         const { email, amount, card } = await request.json();
 
-        console.log('Request body:', { email, amount, card }); 
 
         const trans_value = parseInt(amount);
 
         MongoDBConnection();
         const userFound = await User.findOne({ email });
 
-        console.log('User found:', userFound.name); 
+    
 
         if (!userFound) {
-            return NextResponse.json({ message: "El usuario no está registrado" }, { status: 400 });
+            return NextResponse.json(["El usuario no está registrado"], { status: 400 });
         }
 
         const cardFound = await Card.findById(card);
@@ -111,11 +110,11 @@ export async function POST(request) {
         console.log('Card found:', cardFound);  
 
         if (!cardFound) {
-            return NextResponse.json({ message: "No se encontró la tarjeta" }, { status: 400 });
+            return NextResponse.json([ "No se encontró la tarjeta"], { status: 400 });
         }
 
         if (cardFound.mount < amount) {
-            return NextResponse.json({ message: "No tienes suficiente dinero en la tarjeta" }, { status: 400 });
+            return NextResponse.json([ "No tienes suficiente dinero en la tarjeta" ], { status: 400 });
         }
 
         cardFound.mount -= trans_value;

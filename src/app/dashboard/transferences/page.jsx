@@ -26,11 +26,6 @@ const SendPage = () => {
         setAmountTransaction(e.target.value)
     }
 
-    console.log(alias)
-
-    console.log(user)
-
-    console.log(destinatary)
     const onSubmit = handleSubmit((data) => {
         console.log({ ...data, email: user?.email })
         sendMoney({ ...data, email: user?.email })
@@ -51,6 +46,14 @@ const SendPage = () => {
         transferenceMoney(alias)
     }, [alias])
 
+    useEffect(() => {
+        if (errorsTransaction.length > 0) {
+          const timer = setTimeout(() => {
+            setErrorsTransaction([])
+          }, 3000)
+          return () => clearTimeout(timer)
+        }
+      }, [errorsTransaction, setErrorsTransaction])
 
 
     return (

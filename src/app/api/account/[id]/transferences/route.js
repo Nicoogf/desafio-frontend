@@ -57,11 +57,11 @@ export async function POST(request) {
     const fontSize = 12;
 
     page.drawText(`Transacción realizada con exito`, { x: 50, y: height - 4 * fontSize, size: fontSize + 4, color: rgb(0, 0, 0) });
-    page.drawText(`Detalles : `, { x: 50, y: height - 4 * fontSize, size: fontSize + 4, color: rgb(0, 0, 0) });
-    page.drawText(`De: ${userSender.name} ${userSender.lastname} (${userSender.email})`, { x: 50, y: height - 6 * fontSize, size: fontSize, color: rgb(0, 0, 0) });
-    page.drawText(`A: ${userReceiver.name} ${userReceiver.lastname} (${userReceiver.alias})`, { x: 50, y: height - 8 * fontSize, size: fontSize, color: rgb(0, 0, 0) });
-    page.drawText(`Monto: $ ${trans_value}`, { x: 50, y: height - 10 * fontSize, size: fontSize, color: rgb(0, 0, 0) });
-    page.drawText(`Fecha: ${new Date().toLocaleString()}`, { x: 50, y: height - 12 * fontSize, size: fontSize, color: rgb(0, 0, 0) });
+    page.drawText(`Detalles : `, { x: 50, y: height - 6 * fontSize, size: fontSize + 4, color: rgb(0, 0, 0) });
+    page.drawText(`De: ${userSender.name} ${userSender.lastname} (${userSender.email})`, { x: 50, y: height - 8 * fontSize, size: fontSize, color: rgb(0, 0, 0) });
+    page.drawText(`A: ${userReceiver.name} ${userReceiver.lastname} (${userReceiver.alias})`, { x: 50, y: height - 10 * fontSize, size: fontSize, color: rgb(0, 0, 0) });
+    page.drawText(`Monto: $ ${trans_value}`, { x: 50, y: height - 12 * fontSize, size: fontSize, color: rgb(0, 0, 0) });
+    page.drawText(`Fecha: ${new Date().toLocaleString()}`, { x: 50, y: height - 14 * fontSize, size: fontSize, color: rgb(0, 0, 0) });
 
     const pdfBytes = await pdfDoc.save();
 

@@ -34,12 +34,22 @@ export async function POST(request ,{ params }) {
 
         // Obtener datos de la solicitud
         const { name, codeSegurity, serial, vto, mount ,desc} = await request.json();
+        console.log( name , codeSegurity ,serial ,vto  ,desc)
+
+        if( !name || !codeSegurity || !serial ||  !vto  || !desc) {
+            return NextResponse.json(["Faltan datos de la Tarjeta"] , {status:400})
+        }
+
+        if (isNaN(codeSegurity) || isNaN(serial) || isNaN(vto) ) {
+            return NextResponse.json(["El codigo de seguridad , serial de la tarjeta  y el vencimiento deben ser números"], { status: 400 });
+        }
   
         // Verificar si la cookie de usuario está presente
         const userCookie = request.cookies.get('token');
         if (!userCookie) {
             return NextResponse.json({ message: "El usuario no está AUTENTICADO" }, { status: 401 });
         }
+
   
      
         const { value } = userCookie;

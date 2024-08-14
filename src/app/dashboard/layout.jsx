@@ -140,7 +140,9 @@ const Layout = ({ children }) => {
     <main className='grid grid-cols-12 w-[100%] max-w-[1920px] mx-auto h-[calc(100vh-40px)] rounded-xl overflow-hidden bg-gray-900 relative z-50 overflow-y-auto pb-10' id="home-app">
 
       <nav className='bg-gray-950 w-full px-2 py-3 flex flex-row items-center justify-between mb-2 fixed lg:absolute z-[9999] top-0'>
+        <Link href="/dashboard">
         <Image src={Logo} className='w-14' alt="Logo de digital money app" />
+        </Link>        
           <Link className='flex flex-row items-center gap-x-2' href="/dashboard">
             { loading ? 
               <Skeleton variant="rect" width={238} height={36} animation="wave" baseColor="#111827" highlightColor="#374151"/> :(

@@ -21,15 +21,15 @@ const ConfirmPago = () => {
  
     const router = useRouter()
    
-    console.log(user.id)
+    console.log(user?.id)
 
     useEffect(() => {
         getBusiness()
-        getCards(user.id)       
+        getCards(user?.id)       
         setPrecioRandom(generateRandomPrice())
     }, [])
 
-    const empresaDetail = business.find(empresa => empresa._id === parametros.id)
+    const empresaDetail = business.find(empresa => empresa?._id === parametros.id)
 
 
  

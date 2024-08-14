@@ -111,7 +111,7 @@ const DashboarPage = () => {
 
             {loading ? <Skeleton variant="rect" width={"100%"} height={260} animation="wave" baseColor="#111827" highlightColor="#374151" /> :
               (
-                <section className='w-full h-[200px] md:h-[260px] rounded-md p-2 flex flex-col gap-4 overflow-hidden overflow-y-scroll'>
+                <section className='w-full h-[200px] rounded-md p-2 flex flex-col gap-4 overflow-hidden overflow-y-scroll'>
 
 
                   {top10RecentElements.length > 0 ? (

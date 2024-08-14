@@ -43,12 +43,12 @@ const AddCardPage = () => {
 
     // });
 
-    
+
     const onSubmit = handleSubmit((data) => {
         if (user && user.id) {
             createCard(user.id, {
                 name: data.titular,
-                codeSegurity: data.codeSegurity,
+                codeSegurity: data.cvc,
                 serial: data.serial,
                 vto: data.vto,
                 desc: data.desc,
@@ -111,7 +111,8 @@ const AddCardPage = () => {
                     number={cardComponent?.serial}
                     name={cardComponent?.titular}
                     expiry={cardComponent?.vto == undefined ? "" : cardComponent?.vto}
-                    cvc={cardComponent?.codeSegurity}
+                    // cvc={cardComponent?.codeSegurity}
+                    cvc={cardComponent?.cvc}
                     focused={cardComponent?.focus} />
 
             </div>
@@ -132,16 +133,6 @@ const AddCardPage = () => {
                 />
 
 
-                <input className='bg-slate-800 p-2 text-greenlime outline-none rounded-lg font-semibold'
-                    name="name"
-                    type='text'
-                    placeholder='Ingresar Descripcion de la tarjeta '
-                    autoFocus
-                    {...register("desc")}
-                    onChange={onChange}
-                    onFocus={handleInputFocus}
-
-                />
 
 
                 <input className='bg-slate-800 p-2 text-greenlime outline-none rounded-lg font-semibold'
@@ -177,12 +168,23 @@ const AddCardPage = () => {
 
                 />
 
+                <input className='bg-slate-800 p-2 text-greenlime outline-none rounded-lg font-semibold'
+                    name="name"
+                    type='text'
+                    placeholder='Ingresar Descripcion de la tarjeta '
+                    autoFocus
+                    {...register("desc")}
+                    onChange={onChange}
+                    onFocus={handleInputFocus}
+
+                />
+
 
 
                 <button className='bg-greenlime text-lime-950 rounded-lg font-semibold p-2' type='submit'> Agregar </button>
 
             </form>
-           
+
         </section>
     )
 }

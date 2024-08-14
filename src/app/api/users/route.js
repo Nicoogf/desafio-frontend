@@ -27,18 +27,18 @@ export async function POST(request) {
       confirmPassword
     } = await request.json()
 
-    console.log({ name,
-      lastname,
-      email,
-      dni,
-      rol,
-      phone,
-      dinero,
-      password,
-      companyName,
-      businessField,
-      cuit,
-      confirmPassword})
+    // console.log({ name,
+    //   lastname,
+    //   email,
+    //   dni,
+    //   rol,
+    //   phone,
+    //   dinero,
+    //   password,
+    //   companyName,
+    //   businessField,
+    //   cuit,
+    //   confirmPassword})
 
     const hashedPass = await bycrypt.hash(password, 12)
 
@@ -134,7 +134,7 @@ export async function PATCH(request) {
 
       const body = await request.json();
       const { email, name, lastname, dni, phone, alias, cbu } = body;
-      console.log(alias)
+      // console.log(alias)
 
       // Buscar al usuario en la base de datos por su email
       const userFound = await User.findOne({ email });

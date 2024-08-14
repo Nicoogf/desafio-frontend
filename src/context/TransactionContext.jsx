@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect } from 'react';
 import { getMovesRequest } from "@/axios/Moves"
-import { depositMoneyRequest, getBusinessRequest, payServicesRequest, sendMoneyRequest, transferenceMoneyRequest } from "../axios/transferences"
+import { depositMoneyRequest, getBusinessRequest, payServicesRequest, sendMoneyRequest, transferenceMoneyRequest ,verifyUserRequest } from "../axios/transferences"
 import { createContext, useContext, useState } from "react"
 import { useRouter } from "next/navigation"
 
@@ -55,16 +55,20 @@ export function TransactionProvider({ children }) {
             const res = await depositMoneyRequest(idUser, trans)
             setTransactionDetails(res.data);
             console.log("El res del transition es : ", res)
+            router.push("/dashboard/get-money/success")
         } catch (error) {
             console.log(error)
+            setErrorsTransaction(error.response?.data)
         }
     }
 
     const VerifyUser = async (info_pago) => {
         try {
-            const res = await verifyUserRequest(info_pago)
+            const res = await verifyUserRequest(info_pago)            
+            console.log('Usuario verificado:', res);
+            router.push(`/dashboard/pay-services/${info_pago.servicio_id}/confirm`);
         } catch (error) {
-            console.log(error)
+            setErrorsTransaction(error.response?.data)
         }
     }
 
@@ -96,14 +100,14 @@ export function TransactionProvider({ children }) {
             console.log("valor de res" , res)
         } catch (error) {
             console.log(error)
-            setErrorAlias(error.response.data)
+            // setErrorAlias(error.response.data)
         }
     }
 
  
 
     return (
-        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business, sendMoney, errorsTransaction, transactionDetails, VerifyUser, getBusiness, payServices ,transferenceMoney, destinatary ,errorAlias ,setDestinatary,setErrorAlias}}>
+        <TransactionContext.Provider value={{ getMoves, depositMoney, moves, business, sendMoney, errorsTransaction, transactionDetails, VerifyUser, getBusiness, payServices ,transferenceMoney, destinatary ,errorAlias ,setDestinatary,setErrorAlias,setErrorsTransaction}}>
             {children}
         </TransactionContext.Provider>
     )

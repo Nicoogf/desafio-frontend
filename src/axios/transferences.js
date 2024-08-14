@@ -14,6 +14,8 @@ export const payServicesRequest = (service_id, data) => axios.post(`/services/${
 export const transferenceMoneyRequest = (alias) => axios.post(`/serchuser` , {alias})
 
 
+//
+export const verifyUserRequest = (info) => axios.post(`/services/${info.servicio_id}/confirm`, info);
 
 
 
