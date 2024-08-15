@@ -160,7 +160,8 @@ export async function POST(request) {
             pdfUrl: `/pdfs/${path.basename(pdfPath)}`,
             card: cardFound.serial,
             amount,
-            user: `${userFound.name} ${userFound.lastname}`
+            user: `${userFound.name} ${userFound.lastname}`,
+            type: TransactionType.DEPOSIT_COMPLETED
         });
     } catch (error) {
         return NextResponse.json({ message: error.message }, { status: 500 });

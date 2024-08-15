@@ -8,10 +8,11 @@ import React, { useEffect, useState, useMemo } from 'react'
 import { BiTransfer } from "react-icons/bi";
 import Skeleton from 'react-loading-skeleton';
 import ReactPaginate from 'react-paginate';
+import { TransactionType } from '@/utils/enum'
 
 const MovementsPage = () => {
     const { getMoves, moves } = useTransaction();
-    const { loading } = useAuth()
+    const {  user, loading } = useAuth()
     const [filterPeriod, setFilterPeriod] = useState('');
     const [filterType, setFilterType] = useState('');
     const [selectedButton, setSelectedButton] = useState(null);
@@ -27,9 +28,13 @@ const MovementsPage = () => {
         setExpandedId(expandedId === id ? null : id);
     };
 
+    
+
     useEffect(() => {
-        getMoves();
-    }, []);
+        getMoves(user?.id)
+    }, [user]);
+
+    console.log(moves)
 
     const handleFilterPeriod = (period, index) => {
         if (filterPeriod === period) {
@@ -114,9 +119,11 @@ const MovementsPage = () => {
                 let typeMatch = true;
                 if (filterType) {
                     if (filterType === 'Ingresos') {
-                        typeMatch = ['transfer_received', 'payment_received', 'deposit_completed'].includes(mov.type);
+                        // typeMatch = ['transfer_received', 'payment_received', 'deposit_completed'].includes(mov.type);
+                        typeMatch = [ TransactionType.TRANSFER_RECEIVED , TransactionType.PAYMENT_RECEIVED, TransactionType.DEPOSIT_COMPLETED].includes(mov.type);
                     } else if (filterType === 'Egresos') {
-                        typeMatch = ['transfer_sent', 'payment_sent'].includes(mov.type);
+                        // typeMatch = ['transfer_sent', 'payment_sent'].includes(mov.type);
+                        typeMatch = [TransactionType.TRANSFER_SENT, TransactionType.PAYMENT_SENT].includes(mov.type);
                     }
                 }
 

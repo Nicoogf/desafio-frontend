@@ -42,6 +42,7 @@ export function TransactionProvider({ children }) {
 
     const getMoves = async (userid) => {
         try {
+            console.log(userid)
             const res = await getMovesRequest(userid)
             setMoves(res.data)
         } catch (error) {

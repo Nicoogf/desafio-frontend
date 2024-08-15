@@ -37,7 +37,7 @@ const DashboarPage = () => {
 
 
   const [dinero, setDinero] = useState(user?.dinero)
-  console.log(user?.cbu)
+ 
 
 
   useEffect(() => {
@@ -46,7 +46,6 @@ const DashboarPage = () => {
   }, [user])
 
 
-  console.log(user)
   const [searchTerm, setSearchTerm] = useState('');
   const elementsWithDate = moves.filter(element => element.date);
   elementsWithDate.sort((a, b) => new Date(b.date) - new Date(a.date));
