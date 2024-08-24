@@ -15,7 +15,7 @@ const LoguinPage  = () => {
 
   const closeSesion = () => {
     logout()
-    router.push("/")
+    router.push("/") ;
   }
 
   return (
